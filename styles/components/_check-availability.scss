@@ -1,0 +1,109 @@
+form.check-availability {
+    position: absolute;
+    left: 50%;
+    top: 90%;
+    transform: translate(-50%, 0);
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    max-width: 1420px;
+    width: 90%;
+    z-index: 200;
+    box-shadow: 0 1px 40px 2px rgba(0, 0, 0, 0.2);
+    
+    div.dates {
+        padding: 2em 0 calc(2em - 20px);
+        background-color: $white;
+        grid-column: 1 / 4;
+        display: flex;
+        justify-content: space-between;
+
+        div.input-container {
+            width: 33%;
+            border-right: 1px solid $gray;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0 2em;
+            
+            &:last-of-type {
+                border: none;
+                padding-bottom: 20px;
+            }
+            label.label {
+                color: $gray-dark;
+                text-transform: uppercase;
+            }
+            input.input {
+                border: none;
+                font-size: 4em;
+                font-family: $playfair;
+                max-height: 1.25em;
+            }
+            div.container {
+                display: flex;
+                align-items: flex-end;
+                p {
+                    flex-grow: 1;
+                    font-family: $playfair;
+                    font-size: 5em;
+                    span {
+                        font-family: $playfair;
+                        font-size: 0.25em;
+                    }
+                }
+                svg {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    div.button-container {
+        padding: 2em;
+        background-color: $blue-dark;
+        grid-column: 4 / 5;
+        p {
+            color: $blue-light;
+            font-size: 0.875em;
+            margin-bottom: 1em;
+        }
+        button {
+            color: $white;
+            font-size: 1.25em;
+            text-transform: uppercase;
+            background-color: $green-dark;
+            padding: 1.25em 0.875em;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    }
+
+    @media screen and (max-width: $tablet-lg) {
+        grid-template-rows: 1fr;
+        grid-template-columns: 100%;
+        font-size: 12px;
+        div.dates {
+            grid-row: 1 / 2;
+            grid-column: 1 / 2;
+        }
+        div.button-container {
+            grid-row: 2 / 3;
+            grid-column: 1 / 2;
+        }
+    }
+    @media screen and (max-width: $tablet) {
+        font-size: 10px;
+    }
+    @media screen and (max-width: $phone-lg) {
+        font-size: 8px;
+    }
+    @media screen and (max-width: $phone) {
+        font-size: 6px;
+    }
+}

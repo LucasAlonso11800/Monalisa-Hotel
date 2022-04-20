@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@iconify/react": "^3.2.1",
     "axios": "^0.26.1",
     "formik": "^2.2.9",
+    "moment": "^2.29.3",
     "next": "12.1.5",
     "react": "18.0.0",
+    "react-datepicker": "^4.7.0",
     "react-dom": "18.0.0",
     "sass": "^1.50.1",
     "serverless-mysql": "^1.5.4",
@@ -21,6 +24,7 @@
   "devDependencies": {
     "@types/node": "17.0.25",
     "@types/react": "18.0.5",
+    "@types/react-datepicker": "^4.4.0",
     "@types/react-dom": "18.0.1",
     "eslint": "8.13.0",
     "eslint-config-next": "12.1.5",
