@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap");
 
 * {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -16,20 +15,27 @@
 body {
     width: 100%;
     min-height: 100vh;
+    min-width: 370px;
 }
 
 // Variables
 
-$poppins: 'Poppins', sans-serif;
-$playfair: 'Playfair', sans-serif;
+$poppins: "Poppins", sans-serif;
+$playfair: "Playfair Display", sans-serif;
 
-$white: #FEFEFE;
+$desktop: 1200px;
+$tablet-lg: 1024px;
+$tablet: 768px;
+$phone-lg: 600px;
+$phone: 450px;
+
+$white: #fefefe;
 $black: #211f20;
-$gray-dark: #E0E0E0;
-$gray-light: #EEEEEE;
+$gray-dark: #e0e0e0;
+$gray-light: #eeeeee;
 $green-dark: #84a017;
 $green-light: #b5d557;
 $red-dark: #d22326;
-$red-light: #fc443f; 
+$red-light: #fc443f;
 $blue-dark: #dae2e5;
 $blue-light: #78b5d4;
