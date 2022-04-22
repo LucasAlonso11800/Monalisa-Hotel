@@ -1,0 +1,96 @@
+footer.footer {
+    width: 100%;
+    background-color: $black;
+    display: flex;
+    justify-content: center;
+    padding: 0 1em;
+
+    div.container {
+        flex-grow: 1;
+        max-width: 1420px;
+        padding: 5em 0 2.5em;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        div.column {
+            width: 25%;
+            p {
+                font-size: 1em;
+                color: $gray-dark;
+                transition: all 0.2s ease-in-out;
+                margin-bottom: 1em;
+                &:hover {
+                    color: $white;
+                }
+            }
+            div {
+                position: relative;
+                margin-top: 2em;
+                input {
+                    font-size: 1.25em;
+                    padding-right: 0.8em;
+                    padding-bottom: 0.6em;
+                    border-bottom: 1px solid $gray-dark;
+                    color: $white;
+                    background: transparent;
+                    width: 100%;
+                }
+                svg {
+                    font-size: 1.25em;
+                    position: absolute;
+                    bottom: 0.8em;
+                    right: 8px;
+                    cursor: pointer;
+                    color: $gray-dark;
+                }
+            }
+        }
+        div.bottom-row {
+            width: 100%;
+            margin-top: 5em;
+            padding-top: 2.5em;
+            border-top: 1px solid $gray-dark;
+            display: flex;
+            align-items: flex-end;
+            h4 {
+                font-size: 2em;
+                font-family: $playfair;
+                margin-right: 1em;
+                color: $white;
+            }
+            p {
+                font-size: 1em;
+                flex-grow: 1;
+                color: $gray-dark;
+            }
+            svg {
+                margin-left: 2em;
+                color: $gray-dark;
+                transition: all 0.2s ease-in-out;
+                &:hover {
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    @media all and (max-width: $tablet-lg) {
+        font-size: 14px;
+        div.container {
+            div.column {
+                width: 50%;
+            }
+        }
+    }
+    @media all and (max-width: $tablet) {
+        font-size: 12px;
+    }
+    @media all and (max-width: $phone-lg) {
+        font-size: 10px;
+    }
+    @media all and (max-width: $phone) {
+        font-size: 8px;
+    }
+}

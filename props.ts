@@ -2,6 +2,7 @@ import { StaticImageData } from "next/image";
 
 export type Layout = {
     id: string
+    title: string
     children: React.ReactNode | React.ReactNode[]
 }
 export type Head = {
