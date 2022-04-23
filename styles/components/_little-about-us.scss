@@ -1,0 +1,117 @@
+section.little-about-us {
+    width: 100%;
+    padding: 6em 4em;
+
+    h6 {
+        font-size: 1em;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        margin-bottom: 6em;
+        color: $gray-dark;
+    }
+
+    div.row {
+        display: flex;
+        justify-content: center;
+        position: relative;
+
+        p.left-side-text {
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform: translateX(-95%) rotate(-90deg);
+            transform-origin: right;
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: $gray-darker;
+            font-weight: 600;
+        }
+        p.right-side-text {
+            position: absolute;
+            right: 0;
+            top: 0;
+            transform: translateX(95%) rotate(90deg);
+            transform-origin: left;
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: $gray-darker;
+            font-weight: 600;
+        }
+        div.about {
+            flex-grow: 1;
+            padding: 0 4em;
+            max-width: 1420px;
+            position: relative;
+            display: flex;
+            justify-content: space-evenly;
+
+            span {
+                border: 0.5em solid $white !important;
+                margin-right: 4em !important;
+            }
+
+            div.column {
+                div {
+                    width: 10%;
+                    padding: 1px 0;
+                    background-color: $black;
+                    margin-bottom: 2em;
+                }
+                h2 {
+                    color: $black;
+                    font-size: 4em;
+                    font-family: $playfair;
+                    margin-bottom: 1em;
+                    line-height: 1.5;
+                }
+                p {
+                    color: $gray-dark;
+                    line-height: 2;
+                    margin-bottom: 4em;
+                    span.author {
+                        color: $black;
+                        font-weight: bold;
+                        margin: 0 !important;
+                        border: none !important;
+                    }
+                }
+            }
+        }
+    }
+    @media all and (max-width: $desktop) {
+        font-size: 14px;
+    }
+    @media all and (max-width: $tablet-lg) {
+        font-size: 12px;
+    }
+    @media all and (max-width: $tablet) {
+        padding: 6em 2em;
+        div.row {
+            div.about {
+                flex-direction: column;
+                padding: 0 2em;
+                span {
+                    margin: 0!important;
+                }
+                div.column {
+                    div {
+                        display: none;
+                    }
+                    h2 {
+                        font-size: 3em;
+                        margin: 0.75em 0;
+                    }
+                    p {
+                        margin-bottom: 2em;
+                    }
+                }
+            }
+        }
+    }
+    @media all and (max-width: $phone) {
+        font-size: 10px;
+    }
+}

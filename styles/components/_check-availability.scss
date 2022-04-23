@@ -1,8 +1,6 @@
 form.check-availability {
-    position: absolute;
-    left: 50%;
-    top: 90%;
-    transform: translate(-50%, 0);
+    justify-self: flex-end;
+    transform: translateY(80px);
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -97,7 +95,7 @@ form.check-availability {
             grid-column: 1 / 2;
         }
     }
-    @media screen and (max-width: $tablet) {
+    @media screen and (max-width: $tablet-sm) {
         font-size: 10px;
     }
     @media screen and (max-width: $phone-lg) {

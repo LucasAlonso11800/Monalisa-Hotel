@@ -84,7 +84,7 @@ footer.footer {
             }
         }
     }
-    @media all and (max-width: $tablet) {
+    @media all and (max-width: $tablet-sm) {
         font-size: 12px;
     }
     @media all and (max-width: $phone-lg) {

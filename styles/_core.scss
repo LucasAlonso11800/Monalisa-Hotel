@@ -28,12 +28,14 @@ $playfair: "Playfair Display", sans-serif;
 
 $desktop: 1200px;
 $tablet-lg: 1024px;
-$tablet: 768px;
+$tablet: 900px;
+$tablet-sm: 768px;
 $phone-lg: 600px;
 $phone: 450px;
 
 $white: #fefefe;
 $black: #211f20;
+$gray-darker: #7a7a7a;
 $gray-dark: #9e9e9e;
 $gray: #e0e0e0;
 $gray-light: #eeeeee;
@@ -43,3 +45,6 @@ $red-dark: #d22326;
 $red-light: #fc443f;
 $blue-dark: #dae2e5;
 $blue-light: #78b5d4;
+
+$circle-bg: repeating-radial-gradient(closest-side, #e0e0e0 10%, #eeeeee 20%, #e0e0e0 30%, #eeeeee 40%,#e0e0e0 50%, #eeeeee 60%, #e0e0e0 70%, #eeeeee 80%);
+$circle-bg-size: 50px 50px;
