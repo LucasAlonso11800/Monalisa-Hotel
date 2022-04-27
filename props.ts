@@ -1,5 +1,3 @@
-import { StaticImageData } from "next/image";
-
 export type Layout = {
     id: string
     title: string
@@ -10,6 +8,6 @@ export type Head = {
 };
 
 export type Header = {
-    image: StaticImageData
+    image: string
     children: React.ReactNode | React.ReactNode[]
 }

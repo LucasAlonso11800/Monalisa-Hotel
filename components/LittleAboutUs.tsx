@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import { AboutUs } from '../assets';
 
 export default function LittleAboutUs() {
     return (
@@ -9,7 +8,7 @@ export default function LittleAboutUs() {
             <div className="row">
                 <p className="left-side-text">Tel: (03) 0345 6789</p>
                 <div className="about">
-                    <Image src={AboutUs.src} alt="Night" width={1500} height={1000} objectFit='cover'/>
+                    <Image src='/images/about-us.jpg' alt="Night" width={1500} height={1000} objectFit='cover'/>
                     <div className="column">
                         <div></div>
                         <h2>A best place to enjoy your life</h2>

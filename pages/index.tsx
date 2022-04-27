@@ -1,13 +1,11 @@
 import React from 'react'
-// Assets
-import image from '../assets/HeadImages/Home.jpg';
 // Components
 import { CheckAvailabilty, Header, Layout, LittleAboutUs } from '../components';
 
 export default function Home() {
     return (
         <Layout id="home" title="Welcome">
-            <Header image={image}>
+            <Header image='/images/head-images/Home.jpg'>
                 <h1 className="title">
                     <span className="top-subtitle">Welcome to</span>
                     Monalisa Hotel
