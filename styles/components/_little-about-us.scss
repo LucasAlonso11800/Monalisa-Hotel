@@ -2,15 +2,6 @@ section.little-about-us {
     width: 100%;
     padding: 6em 4em;
 
-    h6 {
-        font-size: 1em;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 4px;
-        margin-bottom: 6em;
-        color: $gray-dark;
-    }
-
     div.row {
         display: flex;
         justify-content: center;
@@ -59,13 +50,6 @@ section.little-about-us {
                     padding: 1px 0;
                     background-color: $black;
                     margin-bottom: 2em;
-                }
-                h2 {
-                    color: $black;
-                    font-size: 4em;
-                    font-family: $playfair;
-                    margin-bottom: 1em;
-                    line-height: 1.5;
                 }
                 p {
                     color: $gray-dark;
