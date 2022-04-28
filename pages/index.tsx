@@ -1,6 +1,6 @@
 import React from 'react'
 // Components
-import { CheckAvailabilty, DiscoverOurRooms, Header, Layout, LittleAboutUs } from '../components';
+import { CheckAvailabilty, DiscoverOurRooms, Header, Layout, LittleAboutUs, Testimonials } from '../components';
 
 export default function Home() {
     return (
@@ -16,6 +16,7 @@ export default function Home() {
             <main className="main">
                 <LittleAboutUs />
                 <DiscoverOurRooms />
+                <Testimonials />
             </main>
         </Layout>
     )

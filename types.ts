@@ -4,3 +4,10 @@ export type RoomType = {
     roomPrice: number
     roomImage: string
 };
+
+export type TestimonialType = {
+    testimonialId: number
+    testimonialText: string
+    testimonialName: string
+    testimonialRating: number
+}

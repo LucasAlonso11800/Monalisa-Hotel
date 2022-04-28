@@ -6,3 +6,4 @@ export { default as Footer } from './Layout/Footer';
 export { default as CheckAvailabilty } from './CheckAvailabilty';
 export { default as DiscoverOurRooms } from './DiscoverOurRooms';
 export { default as LittleAboutUs } from './LittleAboutUs';
+export { default as Testimonials } from './Testimonials';
