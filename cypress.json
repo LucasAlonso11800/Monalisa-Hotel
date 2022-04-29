@@ -1,0 +1,9 @@
+{
+    "env": {
+        "URL": "http://localhost:3005"
+    },
+    "retries": {
+        "runMode": 1,
+        "openMode": 1
+      }
+}

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -- -p 3005",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -11,6 +11,7 @@
   "dependencies": {
     "@iconify/react": "^3.2.1",
     "axios": "^0.26.1",
+    "cypress": "^9.6.0",
     "formik": "^2.2.9",
     "moment": "^2.29.3",
     "next": "12.1.5",

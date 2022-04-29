@@ -6,7 +6,7 @@ export default function DiscoverOurRooms() {
     return (
         <section className="discover-our-rooms">
             <div className="title-container">
-                <h6 className="section-heading">Discover Our Rooms</h6>
+                <h6 className="section-heading">Discover our rooms</h6>
                 <h2 className="section-title">Luxury Interior</h2>
             </div>
             <div className="rooms">
