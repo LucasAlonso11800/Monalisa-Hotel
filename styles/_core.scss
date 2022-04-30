@@ -1,26 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap");
 
-* {
-    font-family: "Poppins", sans-serif;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    line-height: 1;
-    text-decoration: none;
-    list-style-type: none;
-    border: none;
-    outline: none;
-}
-
-body {
-    width: 100%;
-    min-height: 100vh;
-    min-width: 370px;
-}
-input:disabled {
-    background-color: inherit;
-}
-
 // Variables
 
 $poppins: "Poppins", sans-serif;
@@ -48,3 +27,25 @@ $blue-light: #78b5d4;
 
 $circle-bg: repeating-radial-gradient(closest-side, #e0e0e0 10%, #eeeeee 20%, #e0e0e0 30%, #eeeeee 40%,#e0e0e0 50%, #eeeeee 60%, #e0e0e0 70%, #eeeeee 80%);
 $circle-bg-size: 50px 50px;
+
+* {
+    font-family: "Poppins", sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    line-height: 1;
+    text-decoration: none;
+    list-style-type: none;
+    border: none;
+    outline: none;
+    color: $black;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    min-width: 370px;
+}
+input:disabled {
+    background-color: inherit;
+}

@@ -18,10 +18,10 @@ section.testimonials {
             0% {
                 opacity: 0;
             }
-            1% {
+            5% {
                 opacity: 0;
             }
-            5% {
+            10% {
                 opacity: 1;
             }
             95% {
@@ -51,6 +51,9 @@ section.testimonials {
             margin-bottom: 2em;
             svg {
                 margin: 0 .5em;
+                path {
+                    color: #FFCE31
+                }
             }
         }
         p.name {

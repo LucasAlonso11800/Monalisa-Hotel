@@ -1,0 +1,76 @@
+section.contact-us {
+    display: flex;
+    justify-content: space-between;
+    background-color: $white;
+
+    div.column {
+        width: 50%;
+        padding: 4em;
+
+        h6.section-heading {
+            text-align: left;
+            margin-bottom: 1em;
+        }
+        h2.section-title {
+            margin-bottom: 1.5em;
+        }
+
+        p.city {
+            font-size: 2.5em;
+            font-family: $playfair;
+            margin-bottom: 0.75em;
+            font-weight: bold;
+            span {
+                font-weight: normal;
+                color: $gray;
+            }
+        }
+        address {
+            font-style: normal;
+            font-size: 1em;
+            margin-bottom: 2em;
+            color: $gray-darker;
+        }
+        p.email {
+            font-size: 1em;
+            margin-bottom: 4em;
+            color: $gray-darker;
+            b {
+                color: $black;
+            }
+        }
+        p.call {
+            font-size: 0.75em;
+            font-weight: bold;
+            color: $gray-dark;
+            margin-bottom: 1.5em;
+        }
+        p.number {
+            font-size: 3em;
+            font-weight: bold;
+            font-family: $playfair;
+        }
+    }
+
+    @media all and (max-width: $desktop) {
+        font-size: 14px;
+        div.column {
+            width: 65%;
+        }
+    }
+    @media all and (max-width: $tablet-lg) {
+        font-size: 12px;
+        flex-direction: column-reverse;
+        div.column {
+            width: 100%;
+        }
+    }
+    @media all and (max-width: $phone-lg) {
+        div.column {
+            padding: 4em 2em;
+        }
+    }
+    @media all and (max-width: $phone) {
+        font-size: 10px;
+    }
+}
