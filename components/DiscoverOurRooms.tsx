@@ -1,8 +1,10 @@
 import React from 'react';
 // Components
 import Image from 'next/image';
+// Types
+import { DiscoverOurRooms as Props } from '../props';
 
-export default function DiscoverOurRooms() {
+export default function DiscoverOurRooms({ rooms }: Props) {
     return (
         <section className="discover-our-rooms">
             <div className="title-container">
@@ -10,36 +12,13 @@ export default function DiscoverOurRooms() {
                 <h2 className="section-title">Luxury Interior</h2>
             </div>
             <div className="rooms">
-                <div className="room">
-                    <Image src="/images/rooms/classic.jpg" alt="classic" width={140} height={100} objectFit='cover' />
-                    <h4>Classic Room</h4>
-                    <p>Starting from <span>$39.00/Night</span></p>
-                </div>
-                <div className="room">
-                    <Image src="/images/rooms/grand-deluxe.jpg" alt="classic" width={140} height={100} objectFit='cover' />
-                    <h4>Grand Deluxe Room</h4>
-                    <p>Starting from <span>$49.00/Night</span></p>
-                </div>
-                <div className="room">
-                    <Image src="/images/rooms/superior.webp" alt="classic" width={140} height={100} objectFit='cover' />
-                    <h4>Superior Room</h4>
-                    <p>Starting from <span>$59.00/Night</span></p>
-                </div>
-                <div className="room">
-                    <Image src="/images/rooms/classic.jpg" alt="classic" width={140} height={100} objectFit='cover' />
-                    <h4>Classic Room</h4>
-                    <p>Starting from <span>$39.00/Night</span></p>
-                </div>
-                <div className="room">
-                    <Image src="/images/rooms/classic.jpg" alt="classic" width={140} height={100} objectFit='cover' />
-                    <h4>Classic Room</h4>
-                    <p>Starting from <span>$39.00/Night</span></p>
-                </div>
-                <div className="room">
-                    <Image src="/images/rooms/classic.jpg" alt="classic" width={140} height={100} objectFit='cover' />
-                    <h4>Classic Room</h4>
-                    <p>Starting from <span>$39.00/Night</span></p>
-                </div>
+                {rooms.map(room => (
+                    <div className="room" key={room.roomId}>
+                        <Image src={`/images/rooms/${room.roomImage}`} alt={room.roomName} width={140} height={100} objectFit='cover' />
+                        <h4>{room.roomName}</h4>
+                        <p>Starting from <span>${room.roomMinimumPrice.toFixed(2)}/Night</span></p>
+                    </div>
+                ))}
             </div>
             <Image src="/images/rooms/superior.webp" alt="classic" width={1200} height={800} objectFit='cover' />
         </section>
