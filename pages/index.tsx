@@ -36,16 +36,15 @@ export async function getStaticProps() {
             await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_TESTIMONIALS}`)).data,
         ]);
         return {
-            props: { rooms, testimonials }
+            props: { rooms, testimonials },
+            revalidate: 60 * 60 * 24
         }
     }
-    catch (error) {
-        console.log(error)
+    catch {
         return {
-            props: {
-                error: {},
-                rooms: [],
-                testimonials: []
+            redirect: {
+                destination: '/404',
+                permanent: false
             }
         }
     }

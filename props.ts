@@ -1,4 +1,17 @@
-import { RoomType, TestimonialType } from "./types";
+import type { OccupiedRoomType, RoomType, TestimonialType } from "./types";
+
+// Pages
+
+export type LandingPage = {
+    rooms: RoomType[]
+    testimonials: TestimonialType[]
+};
+export type RoomsPage = {
+    rooms: RoomType[]
+    occupiedRooms: OccupiedRoomType[]
+};
+
+// Components
 
 export type Layout = {
     id: string
@@ -14,14 +27,16 @@ export type Header = {
     children: React.ReactNode | React.ReactNode[]
 };
 
-export type LandingPage = {
-    rooms: RoomType[]
-    testimonials: TestimonialType[]
-};
-
 export type DiscoverOurRooms = {
     rooms: RoomType[]
 };
 export type Testimonials = {
     testimonials: TestimonialType[]
+};
+
+export type Room = {
+    room: RoomType
+    index: number
+    occupiedRooms: number
+    direction?: 'reverse'
 };

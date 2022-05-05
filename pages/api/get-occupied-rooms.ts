@@ -4,15 +4,17 @@ import { callSP } from '../../dbConfig';
 import { STORED_PROCEDURES } from '../../const/StoredProcedures';
 // Types
 import type { NextApiRequest, NextApiResponse } from 'next'
-import type { RoomType } from '../../types';
+import type { OccupiedRoomType } from '../../types';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { roomCategoryId } = req.body;
     try {
-        const rooms: RoomType[] = await callSP({ procedure: STORED_PROCEDURES.GET_ROOM_CATEGORY, values: [roomCategoryId] });
+        const rooms: OccupiedRoomType[] = await callSP({
+            procedure: STORED_PROCEDURES.GET_OCCUPIED_ROOMS,
+            values: [new Date().toISOString().substring(0, 10)]
+        });
         res.json(rooms);
     }
     catch (error) {
-        throw(error)
+        throw (error)
     }
 };

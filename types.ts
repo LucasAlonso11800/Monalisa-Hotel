@@ -1,9 +1,20 @@
 export type RoomType = {
     roomId: number
     roomName: string
+    roomSlug: string
     roomMinimumPrice: number
     roomImage: string
+    roomTotalRooms: number
+    roomBeds: number
+    roomPassengers: number
+    roomDeposit: number
 };
+
+export type OccupiedRoomType = {
+    roomId: number
+    roomName: string
+    roomOccupiedRooms: number
+}
 
 export type TestimonialType = {
     testimonialId: number

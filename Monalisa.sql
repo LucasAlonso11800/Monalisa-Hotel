@@ -4,7 +4,7 @@ USE monalisa;
 CREATE TABLE `rooms` (
   `room_id` int PRIMARY KEY AUTO_INCREMENT,
   `room_room_category_id` int,
-  `room_number` int,
+  `room_number` int UNIQUE,
   `room_status` varchar(255)
 );
 
@@ -13,7 +13,9 @@ CREATE TABLE `room_categories` (
   `room_category_name` varchar(255),
   `room_category_description` varchar(255),
   `room_category_image` varchar(255),
+  `room_category_slug` varchar(40),
   `room_category_passengers` int,
+  `room_category_beds` int,
   `room_category_deposit` int
 );
 
