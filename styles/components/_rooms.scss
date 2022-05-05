@@ -1,167 +1,143 @@
-div.room {
-    margin-top: 6em;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding-right: 2em;
-    > span {
-        max-width: 50% !important;
-    }
-    div.column {
-        margin: 0 6em;
-        max-width: 30%;
-        h2.section-title {
-            margin-bottom: 0.5em;
-        }
-        p.price {
-            color: $gray-dark;
-            font-size: 1.25em;
-            margin-bottom: 2em;
-            span {
-                &:nth-of-type(1) {
-                    font-size: 1.75em;
-                    color: $red-dark;
-                    font-weight: bold;
-                }
-                &:nth-of-type(2) {
-                    font-size: 1em;
-                    color: $black;
-                }
-            }
-        }
-        p.description {
-            color: $gray-darker;
-            line-height: 2;
-            margin-bottom: 2em;
-        }
-        p.info {
-            color: $gray;
-            font-weight: 600;
-            margin-bottom: 0.5em;
-            span {
-                color: $black;
-                &.green {
-                    color: $green-light;
-                }
-                &.red {
-                    color: $red-light;
-                }
-            }
-        }
-        a {
-            margin-top: 3.5em;
-            text-transform: uppercase;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-        }
-    }
-
-    div.side-text {
-        border: 2px solid $gray-dark;
-        padding: 2em 0em;
-        max-width: 100px;
-        overflow: visible;
-        margin-right: auto;
-
-        h6.section-heading {
-            color: $gray-dark;
-            transform: translateX(14%) rotate(90deg);
-            transform-origin: left;
-            margin-bottom: 24em;
-            width: 350px;
-            text-align: left;
-        }
-        span {
-            text-align: center;
-            font-weight: bold;
-            display: block;
-            color: $gray-dark;
-        }
-    }
-
-    &.reverse {
-        flex-direction: row-reverse;
-        text-align: right;
-        padding-right: 0;
-        padding-left: 2em;
-        div.column {
-            p.info {
-                text-align: right;
-            }
-            a {
-                justify-content: flex-end;
-            }
-        }
-        div.side-text {
-            margin-right: 0;
-            margin-left: auto;
-            h6.section-heading {
-                transform: translateX(-86%) rotate(-90deg);
-                transform-origin: right;
-                text-align: right;
-            }
-        }
-    }
-    @media all and (max-width: 1400px) {
-        padding: 0;
-        justify-content: stretch;
-        div.column {
-            max-width: 50%;
-            margin-right: 0;
-            margin-left: 2em;
-        }
-        div.side-text {
-            display: none;
-        }
-        &.reverse {
-            div.column {
-                margin-left: 0;
-                margin-right: 2em;
-            }
-        }
-    }
-    @media all and (max-width: $desktop) {
-        font-size: 14px;
-    }
-    @media all and (max-width: $tablet-lg) {
-        font-size: 12px;
-    }
-    @media all and (max-width: $tablet) {
-        font-size: 14px;
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
-        padding: 0 4em;
+#rooms {
+    div.room {
+        margin-top: 6em;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding-right: 2em;
         > span {
-            max-width: 100%!important;
+            max-width: 50% !important;
         }
         div.column {
-            max-width: 400px;
-            margin: 0;
+            margin: 0 6em;
+            max-width: 30%;
             h2.section-title {
-                text-align: center;
+                margin-bottom: 0.5em;
             }
             p.price {
-                text-align: center;
+                color: $gray-dark;
+                font-size: 1.25em;
+                margin-bottom: 2em;
+                span {
+                    &:nth-of-type(1) {
+                        font-size: 1.75em;
+                        color: $red-dark;
+                        font-weight: bold;
+                    }
+                    &:nth-of-type(2) {
+                        font-size: 1em;
+                        color: $black;
+                    }
+                }
             }
             p.description {
-                text-align: center
-            }
-            p.info {
-                text-align: center;
-            }
-            a {
-                justify-content: center;
+                color: $gray-darker;
+                line-height: 2;
                 margin-bottom: 2em;
             }
+            p.info {
+                color: $gray;
+                font-weight: 600;
+                margin-bottom: 0.5em;
+                span {
+                    color: $black;
+                    &.green {
+                        color: $green-light;
+                    }
+                    &.red {
+                        color: $red-light;
+                    }
+                }
+            }
+            a {
+                margin-top: 3.5em;
+                text-transform: uppercase;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+            }
         }
+    
+        div.side-text {
+            border: 2px solid $gray-dark;
+            padding: 2em 0em;
+            max-width: 100px;
+            overflow: visible;
+            margin-right: auto;
+    
+            h6.section-heading {
+                color: $gray-dark;
+                transform: translateX(14%) rotate(90deg);
+                transform-origin: left;
+                margin-bottom: 24em;
+                width: 350px;
+                text-align: left;
+            }
+            span {
+                text-align: center;
+                font-weight: bold;
+                display: block;
+                color: $gray-dark;
+            }
+        }
+    
         &.reverse {
+            flex-direction: row-reverse;
+            text-align: right;
+            padding-right: 0;
+            padding-left: 2em;
+            div.column {
+                p.info {
+                    text-align: right;
+                }
+                a {
+                    justify-content: flex-end;
+                }
+            }
+            div.side-text {
+                margin-right: 0;
+                margin-left: auto;
+                h6.section-heading {
+                    transform: translateX(-86%) rotate(-90deg);
+                    transform-origin: right;
+                    text-align: right;
+                }
+            }
+        }
+        @media all and (max-width: 1400px) {
+            padding: 0;
+            justify-content: stretch;
+            div.column {
+                max-width: 50%;
+                margin-right: 0;
+                margin-left: 2em;
+            }
+            div.side-text {
+                display: none;
+            }
+            &.reverse {
+                div.column {
+                    margin-left: 0;
+                    margin-right: 2em;
+                }
+            }
+        }
+        @media all and (max-width: $desktop) {
+            font-size: 14px;
+        }
+        @media all and (max-width: $tablet-lg) {
+            font-size: 12px;
+        }
+        @media all and (max-width: $tablet) {
+            font-size: 14px;
             flex-direction: column-reverse;
             justify-content: center;
             align-items: center;
-            padding: 0 2em;
+            padding: 0 4em;
+            > span {
+                max-width: 100%!important;
+            }
             div.column {
                 max-width: 400px;
                 margin: 0;
@@ -182,12 +158,38 @@ div.room {
                     margin-bottom: 2em;
                 }
             }
+            &.reverse {
+                flex-direction: column-reverse;
+                justify-content: center;
+                align-items: center;
+                padding: 0 2em;
+                div.column {
+                    max-width: 400px;
+                    margin: 0;
+                    h2.section-title {
+                        text-align: center;
+                    }
+                    p.price {
+                        text-align: center;
+                    }
+                    p.description {
+                        text-align: center
+                    }
+                    p.info {
+                        text-align: center;
+                    }
+                    a {
+                        justify-content: center;
+                        margin-bottom: 2em;
+                    }
+                }
+            }
         }
-    }
-    @media all and (max-width: $phone-lg) {
-        font-size: 12px;
-    }
-    @media all and (max-width: $phone) {
-        font-size: 10px;
+        @media all and (max-width: $phone-lg) {
+            font-size: 12px;
+        }
+        @media all and (max-width: $phone) {
+            font-size: 10px;
+        }
     }
 }

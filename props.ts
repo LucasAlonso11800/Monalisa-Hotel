@@ -11,6 +11,10 @@ export type RoomsPage = {
     occupiedRooms: OccupiedRoomType[]
 };
 
+export type SingleRoomPage = {
+    room: RoomType
+}
+
 // Components
 
 export type Layout = {

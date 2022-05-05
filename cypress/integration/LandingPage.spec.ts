@@ -42,6 +42,7 @@ describe('Discover our rooms section renders server data', () => {
                     expect(room).to.haveOwnProperty('roomName')
                     expect(room).to.haveOwnProperty('roomMinimumPrice')
                     expect(room).to.haveOwnProperty('roomImage')
+                    expect(room).to.haveOwnProperty('roomSlug')
                 });
 
                 cy.get(SECTION)
