@@ -4,6 +4,7 @@ export type RoomType = {
     roomSlug: string
     roomMinimumPrice: number
     roomImage: string
+    roomDescription: string
     roomTotalRooms: number
     roomBeds: number
     roomPassengers: number

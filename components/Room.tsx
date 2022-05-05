@@ -9,7 +9,7 @@ import { formatNumber } from '../utils';
 import type { Room as Props } from '../props'
 
 export default function Room({ room, index, direction, occupiedRooms }: Props) {
-    const { roomImage, roomMinimumPrice, roomName, roomSlug, roomTotalRooms, roomDeposit, roomPassengers, roomBeds } = room;
+    const { roomImage, roomMinimumPrice, roomDescription, roomName, roomSlug, roomTotalRooms, roomDeposit, roomPassengers, roomBeds } = room;
     
     const availableRooms: number = roomTotalRooms - occupiedRooms
     const isAvailable: boolean = availableRooms > 5;
@@ -22,7 +22,7 @@ export default function Room({ room, index, direction, occupiedRooms }: Props) {
                 <p className="price">
                     Start from <span>${roomMinimumPrice.toFixed(2)}</span>&nbsp;/&nbsp;<span>Night</span>
                 </p>
-                <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti blanditiis voluptatem a non nemo nam iste nesciunt facilis eveniet ipsa laborum vero fugit et, sint illum perferendis voluptatibus dolor dolorem.</p>
+                <p className="description">{roomDescription}</p>
                 <p className="info">Status:&nbsp; <span className={isAvailable ? 'green' : 'red'}>{isAvailable ? 'Available' : `Only ${formatNumber(availableRooms)} rooms left!`}</span></p>
                 <p className="info">Deposit:&nbsp; <span>{roomDeposit > 0 ? `Required ${roomDeposit}%` : "No required"}</span></p>
                 <p className="info">Beds:&nbsp; <span>{formatNumber(roomBeds)}</span></p>
