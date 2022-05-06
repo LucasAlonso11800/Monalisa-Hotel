@@ -1,0 +1,57 @@
+section.single-room-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: $gray;
+    padding: 0 4em;
+    div.container {
+        width: 100%;
+        max-width: 1420px;
+        margin: 8em 0;
+        > span {
+            border: 1.5em solid $white!important;
+        }
+
+        p.price {
+            color: $gray-dark;
+            font-size: 1.25em;
+            margin: 6.4em 0 2em;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            span {
+                &:nth-of-type(1) {
+                    font-size: 1.75em;
+                    color: $red-dark;
+                }
+                &:nth-of-type(2) {
+                    font-size: 1em;
+                    color: $black;
+                }
+            }
+        }
+        p.info {
+            font-size: 1.25em;
+            color: $gray-dark;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            span {
+                color: $black;
+            }
+        }
+    }
+
+    @media all and (max-width: $tablet-lg){
+        font-size: 14px;
+    }
+    @media all and (max-width: $tablet){
+        font-size: 12px;
+    }
+    @media all and (max-width: $phone-lg){
+        font-size: 10px;
+    }
+}

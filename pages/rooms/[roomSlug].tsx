@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 // Components
-import { Layout, Header } from '../../components';
+import { Layout, Header, CheckAvailabilty, SingleRoomIntro } from '../../components';
 // Const
 import { APIEndpoints } from '../../const/APIEndpoints';
 import { SERVER_URL } from '../../const/const';
@@ -11,11 +11,17 @@ import type { RoomType } from '../../types';
 import type { SingleRoomPage as Props } from '../../props';
 
 export default function SingleRoomPage({ room }: Props) {
+    const { roomName, roomImage } = room;
     return (
-        <Layout id="single-room-page" title={room.roomName}>
-            <Header image='/images/head-images/Rooms.jpg'>
-
+        <Layout id="single-room-page" title={roomName}>
+            <Header image={`/images/rooms/${roomImage}`}>
+                <h1 className="title">{roomName}</h1>
+                <p className="subtitle">Home {'>'} Rooms {'>'} {roomName}</p>
+                <CheckAvailabilty />
             </Header>
+            <main className="main">
+                <SingleRoomIntro room={room}/>
+            </main>
         </Layout>
     )
 };

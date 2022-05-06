@@ -12,9 +12,7 @@ export default function Rooms({ rooms, occupiedRooms }: Props) {
     return (
         <Layout id="rooms" title="Our Rooms">
             <Header image='/images/head-images/Rooms.jpg'>
-                <h1 className="title">
-                    Our Rooms
-                </h1>
+                <h1 className="title">Our Rooms</h1>
                 <p className="subtitle">Home {'>'} Rooms</p>
                 <CheckAvailabilty />
             </Header>

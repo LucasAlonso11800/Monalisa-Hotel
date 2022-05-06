@@ -10,10 +10,10 @@ CREATE TABLE `rooms` (
 
 CREATE TABLE `room_categories` (
   `room_category_id` int PRIMARY KEY AUTO_INCREMENT,
-  `room_category_name` varchar(255),
+  `room_category_name` varchar(255) UNIQUE,
   `room_category_description` varchar(255),
-  `room_category_image` varchar(255),
-  `room_category_slug` varchar(40),
+  `room_category_image` varchar(255) UNIQUE,
+  `room_category_slug` varchar(40) UNIQUE,
   `room_category_passengers` int,
   `room_category_beds` int,
   `room_category_deposit` int
@@ -21,7 +21,7 @@ CREATE TABLE `room_categories` (
 
 CREATE TABLE `amenities` (
   `ameniti_id` int PRIMARY KEY AUTO_INCREMENT,
-  `ameniti_name` varchar(255)
+  `ameniti_name` varchar(255) UNIQUE
 );
 
 CREATE TABLE `room_amenities` (

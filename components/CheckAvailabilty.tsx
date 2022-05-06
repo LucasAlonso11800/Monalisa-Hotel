@@ -5,9 +5,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
 
+const inDate = new Date();
+const outDate = new Date();
+outDate.setDate(outDate.getDate() + 7)
+
 export default function CheckAvailabilty() {
-    const [checkIn, setCheckIn] = useState<Date | null>(new Date());
-    const [checkOut, setCheckOut] = useState<Date | null>(new Date());
+    const [checkIn, setCheckIn] = useState<Date | null>(inDate);
+    const [checkOut, setCheckOut] = useState<Date | null>(outDate);
 
     const handleChange = (setDate: React.SetStateAction<any>, name: 'in' | 'out', newDate: Date | null) => {
         setDate(newDate);

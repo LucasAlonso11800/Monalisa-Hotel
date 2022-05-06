@@ -44,3 +44,7 @@ export type Room = {
     occupiedRooms: number
     direction?: 'reverse'
 };
+
+export type SingleRoomIntro = {
+    room: RoomType
+}

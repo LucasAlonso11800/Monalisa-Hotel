@@ -8,4 +8,5 @@ export { default as ContactUs } from './ContactUs';
 export { default as DiscoverOurRooms } from './DiscoverOurRooms';
 export { default as LittleAboutUs } from './LittleAboutUs';
 export { default as Room } from './Room';
+export { default as SingleRoomIntro } from './SingleRoomIntro';
 export { default as Testimonials } from './Testimonials';
