@@ -1,0 +1,105 @@
+section.related-rooms {
+    display: flex;
+    justify-content: center;
+    padding: 4em;
+    .container {
+        width: 100%;
+        max-width: 1420px;
+
+        h2.section-title {
+            text-align: center;
+            font-size: 3em;
+        }
+        div.related-rooms {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+
+            div.related-room {
+                cursor: pointer;
+                background-color: $white;
+                width: 30%;
+                transition: all 0.2s ease-in-out;
+                box-shadow: 0 0 5px 1px $gray-darker;
+                &:hover {
+                    box-shadow: 0 0 10px 4px $gray-darker;
+                }
+
+                div.body {
+                    padding: 1em 0;
+                    margin: 0 1em;
+                    border-bottom: 2px solid $gray;
+                    h4 {
+                        font-family: $playfair;
+                        font-size: 1.5em;
+                        margin-bottom: 1em;
+                    }
+                    p.info {
+                        color: $gray;
+                        font-weight: 600;
+                        margin-bottom: 0.5em;
+                        span {
+                            color: $black;
+                            &.green {
+                                color: $green-light;
+                            }
+                            &.red {
+                                color: $red-light;
+                            }
+                        }
+                    }
+                }
+                div.footer {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 1em;
+                    p.price {
+                        color: $gray-dark;
+                        font-size: 1em;
+                        span {
+                            &:nth-of-type(1) {
+                                font-size: 1.25em;
+                                color: $red-dark;
+                                font-weight: bold;
+                            }
+                            &:nth-of-type(2) {
+                                font-size: 1em;
+                                color: $black;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media all and (max-width: $desktop) {
+        font-size: 14px;
+    }
+    @media all and (max-width: $tablet-lg) {
+        font-size: 12px;
+    }
+    @media all and (max-width: $tablet) {
+        .container {
+            div.related-rooms {
+                div.related-room {
+                    width: 45%;
+                    margin-bottom: 2em;
+                }
+            }
+        }
+    }
+    @media all and (max-width: $phone-lg) {
+        font-size: 10px;
+        .container {
+            div.related-rooms {
+                div.related-room {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

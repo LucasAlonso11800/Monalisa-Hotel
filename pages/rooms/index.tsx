@@ -7,6 +7,7 @@ import { APIEndpoints } from '../../const/APIEndpoints';
 import { SERVER_URL } from '../../const/const';
 // Types
 import type { RoomsPage as Props } from '../../props';
+import { getOccupiedRoomsNumber } from '../../utils';
 
 export default function Rooms({ rooms, occupiedRooms }: Props) {
     return (
@@ -23,7 +24,7 @@ export default function Rooms({ rooms, occupiedRooms }: Props) {
                         room={room}
                         index={index}
                         direction={index % 2 === 0 ? 'reverse' : undefined}
-                        occupiedRooms={occupiedRooms.find(occ_room => occ_room.roomId === room.roomId)?.roomOccupiedRooms || 0}
+                        occupiedRooms={getOccupiedRoomsNumber(occupiedRooms, room)}
                     />
                 ))}
             </main>

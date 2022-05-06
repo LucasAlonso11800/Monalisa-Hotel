@@ -1,16 +1,18 @@
 import axios from 'axios';
 import React from 'react'
 // Components
-import { Layout, Header, CheckAvailabilty, SingleRoomIntro, SingleRoomInfo } from '../../components';
+import { Layout, Header, CheckAvailabilty, SingleRoomIntro, SingleRoomInfo, RelatedRooms } from '../../components';
+// Utils
+import { getRelatedRoomsIndex } from '../../utils';
 // Const
 import { APIEndpoints } from '../../const/APIEndpoints';
 import { SERVER_URL } from '../../const/const';
 // Types
 import type { GetStaticPropsContext } from 'next';
-import type { AmenitiType, RoomType } from '../../types';
+import type { AmenitiType, OccupiedRoomType, RoomType } from '../../types';
 import type { SingleRoomPage as Props } from '../../props';
 
-export default function SingleRoomPage({ room, amenities }: Props) {
+export default function SingleRoomPage({ room, amenities, relatedRooms, occupiedRooms }: Props) {
     const { roomName, roomImage, roomDescription } = room;
 
     return (
@@ -21,8 +23,9 @@ export default function SingleRoomPage({ room, amenities }: Props) {
                 <CheckAvailabilty />
             </Header>
             <main className="main">
-                <SingleRoomIntro room={room}/>
-                <SingleRoomInfo description={roomDescription} amenities={amenities}/>
+                <SingleRoomIntro room={room} />
+                <SingleRoomInfo description={roomDescription} amenities={amenities} />
+                <RelatedRooms rooms={relatedRooms} occupiedRooms={occupiedRooms} />
             </main>
         </Layout>
     )
@@ -38,19 +41,29 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
     try {
-        const rooms: RoomType[] = await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data;
-        const room = rooms.find(r => r.roomSlug === params?.roomSlug); 
-        const amenities: AmenitiType[] = await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_AMENITIES}`, { roomCategoryId: room?.roomId})).data
-        
+        const [rooms, occupiedRooms]: [RoomType[], OccupiedRoomType[]] = await Promise.all([
+            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data,
+            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_OCCUPIED_ROOMS}`)).data,
+        ]);
+
+        const room = rooms.find(r => r.roomSlug === params?.roomSlug);
+        const roomIndex = rooms.findIndex(r => r.roomSlug === room?.roomSlug);
+        const randomNumbers = getRelatedRoomsIndex(roomIndex, rooms.length);
+
+        const amenities: AmenitiType[] = await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_AMENITIES}`, { roomCategoryId: room?.roomId })).data
+
         return {
-            props: { 
+            props: {
                 room,
-                amenities
+                amenities,
+                relatedRooms: [rooms[randomNumbers[0]], rooms[randomNumbers[1]], rooms[randomNumbers[2]]],
+                occupiedRooms
             },
             revalidate: 60 * 60 * 24
         }
     }
-    catch {
+    catch (err) {
+        console.log(err)
         return {
             redirect: {
                 destination: '/404',

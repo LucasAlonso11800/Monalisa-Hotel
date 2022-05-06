@@ -13,8 +13,10 @@ export type RoomsPage = {
 
 export type SingleRoomPage = {
     room: RoomType
+    occupiedRooms: OccupiedRoomType[]
     amenities: AmenitiType[]
-}
+    relatedRooms: RoomType[]
+};
 
 // Components
 
@@ -53,4 +55,9 @@ export type SingleRoomIntro = {
 export type SingleRoomInfo = {
     description: string
     amenities: AmenitiType[]
+};
+
+export type RelatedRooms = {
+    rooms: RoomType[]
+    occupiedRooms: OccupiedRoomType[]
 }

@@ -1,13 +1,15 @@
 import React from 'react';
-// Components
 import {useRouter} from 'next/router'
+// Components
 import Image from 'next/image';
+// Utils
+import { redirect } from '../utils';
 // Types
 import { DiscoverOurRooms as Props } from '../props';
 
 export default function DiscoverOurRooms({ rooms }: Props) {
     const router = useRouter();
-    const redirect = (url: string) => () => router.push(url);
+
     return (
         <section className="discover-our-rooms">
             <div className="title-container">
@@ -15,13 +17,16 @@ export default function DiscoverOurRooms({ rooms }: Props) {
                 <h2 className="section-title">Luxury Interior</h2>
             </div>
             <div className="rooms">
-                {rooms.map(room => (
-                    <div className="room" key={room.roomId} onClick={redirect(`/rooms/${room.roomSlug}`)}>
-                        <Image src={`/images/rooms/${room.roomImage}`} alt={room.roomName} width={140} height={100} objectFit='cover' />
-                        <h4>{room.roomName}</h4>
-                        <p>Starting from <span>${room.roomMinimumPrice.toFixed(2)}/Night</span></p>
-                    </div>
-                ))}
+                {rooms.map(room => {
+                    const {roomId, roomSlug, roomImage, roomName, roomMinimumPrice} = room;
+                    return (
+                        <div className="room" key={roomId} onClick={redirect(`/rooms/${roomSlug}`, router)}>
+                            <Image src={`/images/rooms/${roomImage}`} alt={roomName} width={140} height={100} objectFit='cover' />
+                            <h4>{roomName}</h4>
+                            <p>Starting from <span>${roomMinimumPrice.toFixed(2)}/Night</span></p>
+                        </div>
+                    )})
+                } 
             </div>
             <Image src="/images/rooms/superior.webp" alt="classic" width={1200} height={800} objectFit='cover' />
         </section>

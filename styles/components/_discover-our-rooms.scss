@@ -23,6 +23,7 @@ section.discover-our-rooms {
         margin: 0 4em 4em 0;
         height: 400px;
         transition: all 0.2s ease-in-out;
+        overflow-y: scroll;
 
         &::-webkit-scrollbar {
             width: 0.5em;
