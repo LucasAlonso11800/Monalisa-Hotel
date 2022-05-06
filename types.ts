@@ -24,6 +24,14 @@ export type TestimonialType = {
     testimonialRating: 1 | 2 | 3 | 4 | 5
 };
 
+export type AmenitiType = {
+    roomId: number
+    roomName: string
+    amenitiId: number
+    amenitiName: string
+    amenitiStatus: 'Y' | 'N'
+}
+
 type OkPacket = {
     fieldCount: number
     affectedRows: number

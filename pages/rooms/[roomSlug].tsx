@@ -1,17 +1,18 @@
 import axios from 'axios';
 import React from 'react'
 // Components
-import { Layout, Header, CheckAvailabilty, SingleRoomIntro } from '../../components';
+import { Layout, Header, CheckAvailabilty, SingleRoomIntro, SingleRoomInfo } from '../../components';
 // Const
 import { APIEndpoints } from '../../const/APIEndpoints';
 import { SERVER_URL } from '../../const/const';
 // Types
 import type { GetStaticPropsContext } from 'next';
-import type { RoomType } from '../../types';
+import type { AmenitiType, RoomType } from '../../types';
 import type { SingleRoomPage as Props } from '../../props';
 
-export default function SingleRoomPage({ room }: Props) {
-    const { roomName, roomImage } = room;
+export default function SingleRoomPage({ room, amenities }: Props) {
+    const { roomName, roomImage, roomDescription } = room;
+
     return (
         <Layout id="single-room-page" title={roomName}>
             <Header image={`/images/rooms/${roomImage}`}>
@@ -21,6 +22,7 @@ export default function SingleRoomPage({ room }: Props) {
             </Header>
             <main className="main">
                 <SingleRoomIntro room={room}/>
+                <SingleRoomInfo description={roomDescription} amenities={amenities}/>
             </main>
         </Layout>
     )
@@ -37,8 +39,14 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: GetStaticPropsContext) {
     try {
         const rooms: RoomType[] = await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data;
+        const room = rooms.find(r => r.roomSlug === params?.roomSlug); 
+        const amenities: AmenitiType[] = await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_AMENITIES}`, { roomCategoryId: room?.roomId})).data
+        
         return {
-            props: { room: rooms.find(r => r.roomSlug === params?.roomSlug) },
+            props: { 
+                room,
+                amenities
+            },
             revalidate: 60 * 60 * 24
         }
     }

@@ -1,4 +1,4 @@
-import type { OccupiedRoomType, RoomType, TestimonialType } from "./types";
+import type { AmenitiType, OccupiedRoomType, RoomType, TestimonialType } from "./types";
 
 // Pages
 
@@ -13,6 +13,7 @@ export type RoomsPage = {
 
 export type SingleRoomPage = {
     room: RoomType
+    amenities: AmenitiType[]
 }
 
 // Components
@@ -47,4 +48,9 @@ export type Room = {
 
 export type SingleRoomIntro = {
     room: RoomType
+};
+
+export type SingleRoomInfo = {
+    description: string
+    amenities: AmenitiType[]
 }

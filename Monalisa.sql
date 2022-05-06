@@ -25,10 +25,10 @@ CREATE TABLE `amenities` (
 );
 
 CREATE TABLE `room_amenities` (
-  `room_ameniti_room_id` int,
+  `room_ameniti_room_category_id` int,
   `room_ameniti_ameniti_id` int,
   `room_ameniti_status` varchar(255),
-  PRIMARY KEY (`room_ameniti_room_id`, `room_ameniti_ameniti_id`)
+  PRIMARY KEY (`room_ameniti_room_category_id`, `room_ameniti_ameniti_id`)
 );
 
 CREATE TABLE `price_categories` (
@@ -71,7 +71,7 @@ CREATE TABLE `testimonials` (
 
 ALTER TABLE `rooms` ADD FOREIGN KEY (`room_room_category_id`) REFERENCES `room_categories` (`room_category_id`);
 
-ALTER TABLE `room_amenities` ADD FOREIGN KEY (`room_ameniti_room_id`) REFERENCES `rooms` (`room_id`);
+ALTER TABLE `room_amenities` ADD FOREIGN KEY (`room_ameniti_room_id`) REFERENCES `room_categories` (`room_category_id`);
 
 ALTER TABLE `room_amenities` ADD FOREIGN KEY (`room_ameniti_ameniti_id`) REFERENCES `amenities` (`ameniti_id`);
 

@@ -1,0 +1,65 @@
+section.single-room-info {
+    background: $white;
+    display: flex;
+    justify-content: center;
+    padding: 4em;
+    .container {
+        width: 100%;
+        max-width: 1420px;
+        h2.section-title {
+            text-align: center;
+            font-size: 3em;
+        }
+        p.description {
+            color: $gray-dark;
+            text-align: center;
+            line-height: 1.5;
+            font-size: 1.125em;
+            margin-bottom: 2.667em;
+        }
+        div.amenities {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            p.ameniti {
+                width: 30%;
+                margin-bottom: 1em;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                svg {
+                    margin: 0 0.25em;
+                    padding: 0.125em;
+                    border-radius: 100%;
+                    font-size: 2em;
+                    &.green {
+                        background-color: $green-light;
+                    }
+                    &.gray {
+                        background-color: $gray;    
+                    }
+                }
+            }
+        }
+    }
+    @media all and (max-width: $tablet-lg){
+        font-size: 14px;
+    }
+    @media all and (max-width: $tablet){
+        font-size: 12px;
+    }
+    @media all and (max-width: $phone-lg){
+        font-size: 10px;
+    }
+    @media all and (max-width: $phone){
+        .container {
+            div.amenities {
+                p.ameniti {
+                    width: 45%;
+                }
+            }
+        }
+    }
+}
