@@ -1,11 +1,11 @@
 /// <reference types="cypress" />
-import type { OccupiedRoomType, RoomType } from '../../types';
+import type { RoomsPage } from '../../props';
 
 describe('Rooms page renders server data', () => {
     it('Should display many rooms with their contents', () => {
         cy.visit(`${Cypress.env('URL')}/rooms`)
             .its('__NEXT_DATA__.props.pageProps')
-            .then((props: { rooms: RoomType[], occupiedRooms: OccupiedRoomType[] }) => {
+            .then((props: RoomsPage) => {
                 expect(props).to.haveOwnProperty('rooms');
                 expect(props).to.haveOwnProperty('occupiedRooms');
                 expect(props.rooms).length.to.be.greaterThan(0);

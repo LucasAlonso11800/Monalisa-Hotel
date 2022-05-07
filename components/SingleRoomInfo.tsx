@@ -21,7 +21,6 @@ export default function SingleRoomInfo({ description, amenities }: SingleRoomInf
                             {ameniti.amenitiName}
                         </p>
                     ))}
-                    <p className="ameniti"></p>
                 </div>
             </div>
         </section>

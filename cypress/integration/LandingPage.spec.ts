@@ -1,12 +1,12 @@
 /// <reference types="cypress" />
 import type { RoomType, TestimonialType } from '../../types';
 
+beforeEach(() => {
+    cy.visit(Cypress.env('URL'));
+})
+
 describe('Discover our rooms section renders static content', () => {
     const SECTION = 'section.discover-our-rooms';
-
-    beforeEach(() => {
-        cy.visit(Cypress.env('URL'));
-    });
 
     it('Should have a heading', () => {
         cy.get(SECTION)
@@ -31,12 +31,12 @@ describe('Discover our rooms section renders server data', () => {
     const SECTION = 'section.discover-our-rooms';
 
     it('Should display many rooms with their content', () => {
-        cy.visit(Cypress.env('URL'))
+        cy.window()
             .its('__NEXT_DATA__.props.pageProps')
             .then((props: { rooms: RoomType[] }) => {
                 expect(props).to.haveOwnProperty('rooms');
                 expect(props.rooms).length.to.be.greaterThan(0);
-                
+
                 props.rooms.forEach(room => {
                     expect(room).to.haveOwnProperty('roomId')
                     expect(room).to.haveOwnProperty('roomName')
@@ -70,10 +70,6 @@ describe('Discover our rooms section renders server data', () => {
 describe('Testimonials section renders static content', () => {
     const SECTION = 'section.testimonials';
 
-    beforeEach(() => {
-        cy.visit(Cypress.env('URL'));
-    });
-
     it('Should have a heading', () => {
         cy.get(SECTION)
             .find('h6')
@@ -94,7 +90,7 @@ describe('Testimonials section renders server data', () => {
     const SECTION = 'section.testimonials';
 
     it('Should display a testimonial and ten seconds later show the next one', () => {
-        cy.visit(Cypress.env('URL'))
+        cy.window()
             .its('__NEXT_DATA__.props.pageProps')
             .then((props: { testimonials: TestimonialType[] }) => {
                 expect(props).to.haveOwnProperty('testimonials');
