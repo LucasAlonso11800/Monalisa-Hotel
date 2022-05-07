@@ -11,9 +11,17 @@ const getRandomNumber = (roomIndex: number, roomsLength: number, array: number[]
 };
 
 export const getRelatedRoomsIndex = (roomIndex: number, roomsLength: number): number[] => {
-    const response = [getRandomNumber(roomIndex, roomsLength, [])];
-    response[1] = getRandomNumber(roomIndex, roomsLength, response);
-    response[2] = getRandomNumber(roomIndex, roomsLength, response);
+    const response: number[] = []
+    if (roomsLength === 2) response[0] = getRandomNumber(roomIndex, roomsLength, []);
+    if (roomsLength === 3) {
+        response[0] = getRandomNumber(roomIndex, roomsLength, []);
+        response[1] = getRandomNumber(roomIndex, roomsLength, response);
+    };
+    if (roomsLength > 3) {
+        response[0] = getRandomNumber(roomIndex, roomsLength, []);
+        response[1] = getRandomNumber(roomIndex, roomsLength, response);
+        response[2] = getRandomNumber(roomIndex, roomsLength, response);
+    };
     return response;
 };
 
@@ -21,6 +29,6 @@ export const getOccupiedRoomsNumber = (occupiedRooms: OccupiedRoomType[], room: 
     return occupiedRooms.find(occ_room => occ_room.roomId === room.roomId)?.roomOccupiedRooms || 0
 };
 
-export const getImageURL = (folder: string | null, image: string): string => `/images/${folder ? `${folder}/${image}` : `${image}`}`;
+export const getImageURL = (image: string, folder?: string): string => `/images/${folder ? `${folder}/${image}` : `${image}`}`;
 
 export const redirect = (url: string, router: NextRouter) => () => router.push(url)

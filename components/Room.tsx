@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
 // Utils
-import { formatNumber } from '../utils';
+import { formatNumber, getImageURL } from '../utils';
 // Types
 import type { Room as Props } from '../props'
 
@@ -16,7 +16,7 @@ export default function Room({ room, index, direction, occupiedRooms }: Props) {
 
     return (
         <div className={"room " + direction}>
-            <Image src={`/images/rooms/${roomImage}`} alt={roomName} width={800} height={650} objectFit='cover' />
+            <Image src={getImageURL(roomImage, "rooms")} alt={roomName} width={800} height={650} objectFit='cover' />
             <div className="column">
                 <h2 className="section-title">{roomName}</h2>
                 <p className="price">

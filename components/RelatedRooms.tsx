@@ -22,7 +22,7 @@ export default function RelatedRooms({ rooms, occupiedRooms }: Props) {
                         
                         return (
                             <div className="related-room" key={roomId} onClick={redirect(`/rooms/${room.roomSlug}`, router)}>
-                                <Image src={getImageURL('rooms', roomImage)} alt={roomName} width={600} height={400} objectFit='cover' />
+                                <Image src={getImageURL(roomImage, 'rooms')} alt={roomName} width={600} height={400} objectFit='cover' />
                                 <div className="body">
                                     <h4>{roomName}</h4>
                                     <p className="info">Status:&nbsp; <span className={isAvailable ? 'green' : 'red'}>{isAvailable ? 'Available' : `Only ${formatNumber(availableRooms)} rooms left!`}</span></p>

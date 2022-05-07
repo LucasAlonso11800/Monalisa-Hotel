@@ -3,7 +3,7 @@ import {useRouter} from 'next/router'
 // Components
 import Image from 'next/image';
 // Utils
-import { redirect } from '../utils';
+import { getImageURL, redirect } from '../utils';
 // Types
 import { DiscoverOurRooms as Props } from '../props';
 
@@ -21,14 +21,14 @@ export default function DiscoverOurRooms({ rooms }: Props) {
                     const {roomId, roomSlug, roomImage, roomName, roomMinimumPrice} = room;
                     return (
                         <div className="room" key={roomId} onClick={redirect(`/rooms/${roomSlug}`, router)}>
-                            <Image src={`/images/rooms/${roomImage}`} alt={roomName} width={140} height={100} objectFit='cover' />
+                            <Image src={getImageURL(roomImage, "rooms")} alt={roomName} width={140} height={100} objectFit='cover' />
                             <h4>{roomName}</h4>
                             <p>Starting from <span>${roomMinimumPrice.toFixed(2)}/Night</span></p>
                         </div>
                     )})
                 } 
             </div>
-            <Image src="/images/rooms/superior.webp" alt="classic" width={1200} height={800} objectFit='cover' />
+            <Image src={getImageURL("superior.webp", "rooms")} alt="classic" width={1200} height={800} objectFit='cover' />
         </section>
     )
 };

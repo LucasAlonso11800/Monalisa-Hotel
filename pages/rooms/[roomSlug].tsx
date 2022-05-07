@@ -3,7 +3,7 @@ import React from 'react'
 // Components
 import { Layout, Header, CheckAvailabilty, SingleRoomIntro, SingleRoomInfo, RelatedRooms } from '../../components';
 // Utils
-import { getRelatedRoomsIndex } from '../../utils';
+import { getImageURL, getRelatedRoomsIndex } from '../../utils';
 // Const
 import { APIEndpoints } from '../../const/APIEndpoints';
 import { SERVER_URL } from '../../const/const';
@@ -17,7 +17,7 @@ export default function SingleRoomPage({ room, amenities, relatedRooms, occupied
 
     return (
         <Layout id="single-room-page" title={roomName}>
-            <Header image={`/images/rooms/${roomImage}`}>
+            <Header image={getImageURL(roomImage, 'rooms')}>
                 <h1 className="title">{roomName}</h1>
                 <p className="subtitle">Home {'>'} Rooms {'>'} {roomName}</p>
                 <CheckAvailabilty />
