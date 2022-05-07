@@ -1,7 +1,8 @@
-import { Icon } from '@iconify/react'
-import React from 'react'
+import React from 'react';
+// Components
+import { Icon } from '@iconify/react';
 // Types
-import type { SingleRoomInfo } from '../props'
+import type { SingleRoomInfo } from '../props';
 
 export default function SingleRoomInfo({ description, amenities }: SingleRoomInfo) {
     return (
