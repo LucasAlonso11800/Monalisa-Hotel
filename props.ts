@@ -18,6 +18,10 @@ export type SingleRoomPage = {
     relatedRooms: RoomType[]
 };
 
+export type AboutPage = {
+    testimonials: TestimonialType[]
+};
+
 // Components
 
 export type Layout = {

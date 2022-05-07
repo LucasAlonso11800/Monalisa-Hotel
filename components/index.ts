@@ -3,6 +3,7 @@ export { default as Header } from './Layout/Header';
 export { default as Layout } from './Layout/Layout';
 export { default as Footer } from './Layout/Footer';
 
+export { default as AboutUs } from './AboutUs';
 export { default as CheckAvailabilty } from './CheckAvailabilty';
 export { default as ContactUs } from './ContactUs';
 export { default as DiscoverOurRooms } from './DiscoverOurRooms';

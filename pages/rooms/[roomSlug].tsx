@@ -62,8 +62,7 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
             revalidate: 60 * 60 * 24
         }
     }
-    catch (err) {
-        console.log(err)
+    catch {
         return {
             redirect: {
                 destination: '/404',

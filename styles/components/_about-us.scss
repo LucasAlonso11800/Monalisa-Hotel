@@ -1,0 +1,63 @@
+section.about-us {
+    width: 100%;
+    background-color: $white;
+    padding: 8em 4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    div.container {
+        width: 100%;
+        max-width: 1200px;
+
+        h2.section-title {
+            text-align: center;
+        }
+        p.description {
+            color: $gray-dark;
+            text-align: center;
+            line-height: 1.5;
+            font-size: 1.125em;
+            margin-bottom: 3.555555em;
+        }
+        p.numbers {
+            font-size: 1.25em;
+            font-weight: bold;
+            margin-bottom: 3.2em;
+            text-align: center;
+        }
+        div.numbers {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+
+            div.number {
+                width: 16em;
+                margin-bottom: 1em;
+                h4 {
+                    font-family: $playfair;
+                    font-size: 4em;
+                    text-align: center;
+                    margin-bottom: 0.25em;
+                }
+                p {
+                    color: $gray-darker;
+                    text-align: center;
+                    font-size: 1.25em;
+                }
+            }
+        }
+    }
+
+    @media all and (max-width: $desktop) {
+        font-size: 14px;
+    }
+    @media all and (max-width: $tablet-lg) {
+        font-size: 12px;
+    }
+    @media all and (max-width: $phone){
+        font-size: 10px;
+    }
+}
