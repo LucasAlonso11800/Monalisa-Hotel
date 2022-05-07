@@ -1,5 +1,5 @@
+import React from 'react';
 import axios from 'axios';
-import React from 'react'
 // Components
 import { Layout, Header, CheckAvailabilty, SingleRoomIntro, SingleRoomInfo, RelatedRooms } from '../../components';
 // Utils
