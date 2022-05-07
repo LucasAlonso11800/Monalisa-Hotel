@@ -4,7 +4,7 @@ beforeEach(() => {
     cy.visit(Cypress.env('URL'));
 });
 
-describe('Navbar', () => {
+describe.only('Navbar', () => {
     it('Should navigate among pages', () => {
         // About
         cy.get('header.header > nav.nav > a[href="/about"]')
@@ -12,6 +12,11 @@ describe('Navbar', () => {
         cy.get('header.header > nav.nav > a[href="/about"')
             .click({ force: true })
         cy.url().should('match', /\/about$/)
+        cy.wait(1000)
+        cy.get('header')
+            .find('h1.title')
+            .invoke('text')
+            .should('eq', 'About UsThe best place to enjoy your life')
 
         // Rooms
         cy.get('header.header > nav.nav > a[href="/rooms"]')
@@ -19,6 +24,11 @@ describe('Navbar', () => {
         cy.get('header.header > nav.nav > a[href="/rooms"]')
             .click({ force: true })
         cy.url().should('match', /\/rooms$/)
+        cy.wait(1000)
+        cy.get('header')
+            .find('h1.title')
+            .invoke('text')
+            .should('eq', 'Our Rooms')
 
         // Reservation
         cy.get('header.header > nav.nav > a[href="/reservation"]')
@@ -26,6 +36,11 @@ describe('Navbar', () => {
         cy.get('header.header > nav.nav > a[href="/reservation"]')
             .click({ force: true })
         cy.url().should('match', /\/reservation$/)
+        cy.wait(1000)
+        cy.get('header')
+            .find('h1.title')
+            .invoke('text')
+            .should('eq', 'Reserve')
 
         // Home
         cy.get('header.header > nav.nav > a[href="/"]')
@@ -33,6 +48,11 @@ describe('Navbar', () => {
         cy.get('header.header > nav.nav > a[href="/"]')
             .click({ force: true })
         cy.url().should('match', /\/$/)
+        cy.wait(1000)
+        cy.get('header')
+            .find('h1.title')
+            .invoke('text')
+            .should('eq', 'Welcome toMonalisa Hotel')
     });
 });
 
