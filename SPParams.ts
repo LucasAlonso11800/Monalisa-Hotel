@@ -1,6 +1,6 @@
 import { STORED_PROCEDURES } from "./const/StoredProcedures";
 
-export type CallSPParams = GetRooms | GetTestimonials | GetOccupiedRooms | GetRoomAmenities;
+export type CallSPParams = GetRooms | GetTestimonials | GetOccupiedRooms | GetRoomAmenities | GetRoomPrices;
 
 type GetRooms = {
     procedure: STORED_PROCEDURES.GET_ROOM_CATEGORY,
@@ -23,4 +23,9 @@ type GetRoomAmenities = {
     procedure: STORED_PROCEDURES.GET_ROOM_AMENITIES,
     // [id]
     values: [number]
+};
+
+type GetRoomPrices = {
+    procedure: STORED_PROCEDURES.GET_ROOM_PRICES,
+    values: []
 };

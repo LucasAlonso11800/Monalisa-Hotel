@@ -1,4 +1,4 @@
-import type { AmenitiType, OccupiedRoomType, RoomType, TestimonialType } from "./types";
+import type { AmenitiType, OccupiedRoomType, PriceType, RoomType, TestimonialType } from "./types";
 
 // Pages
 
@@ -20,6 +20,12 @@ export type SingleRoomPage = {
 
 export type AboutPage = {
     testimonials: TestimonialType[]
+};
+
+export type ReservationPage = {
+    rooms: RoomType[]
+    occupiedRooms: OccupiedRoomType[]
+    roomPrices: PriceType[]
 };
 
 // Components
@@ -64,4 +70,11 @@ export type SingleRoomInfo = {
 export type RelatedRooms = {
     rooms: RoomType[]
     occupiedRooms: OccupiedRoomType[]
-}
+};
+
+export type AvailableRoom = {
+    room: RoomType
+    availableRooms: number
+    roomPrices: PriceType[]
+    formik: any
+};

@@ -30,6 +30,13 @@ export type AmenitiType = {
     amenitiId: number
     amenitiName: string
     amenitiStatus: 'Y' | 'N'
+};
+
+export type PriceType = {
+    priceId: number
+    priceName: string
+    roomId: number
+    roomPrice: number
 }
 
 type OkPacket = {

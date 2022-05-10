@@ -1,0 +1,28 @@
+#reservation {
+    main.main {
+        width: 100%;
+        padding: 80px 0;
+        background-color: $gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        > div.container {
+            padding: 0 40px;
+            max-width: 1420px;
+            h2.section-title {
+                font-size: 3em;
+                text-align: center;
+            }
+            form.check-availability {
+                transform: none;
+            };
+        }
+        
+        section.available-rooms {
+            h2.section-title {
+                margin-top: 2em;
+            }
+        }
+    }
+}

@@ -26,7 +26,7 @@ export default function RelatedRooms({ rooms, occupiedRooms }: Props) {
                                 <div className="body">
                                     <h4>{roomName}</h4>
                                     <p className="info">Status:&nbsp; <span className={isAvailable ? 'green' : 'red'}>{isAvailable ? 'Available' : `Only ${formatNumber(availableRooms)} rooms left!`}</span></p>
-                                    <p className="info">Deposit:&nbsp; <span>{roomDeposit > 0 ? `Required ${roomDeposit}%` : "No required"}</span></p>
+                                    <p className="info">Deposit:&nbsp; <span>{roomDeposit > 0 ? `Required ${roomDeposit}%` : "Not required"}</span></p>
                                     <p className="info">Beds:&nbsp; <span>{formatNumber(roomBeds)}</span></p>
                                     <p className="info">Passengers:&nbsp; <span>{formatNumber(roomPassengers)}</span></p>
                                 </div>

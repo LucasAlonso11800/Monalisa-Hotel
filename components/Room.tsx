@@ -24,7 +24,7 @@ export default function Room({ room, index, direction, occupiedRooms }: Props) {
                 </p>
                 <p className="description">{roomDescription}</p>
                 <p className="info">Status:&nbsp; <span className={isAvailable ? 'green' : 'red'}>{isAvailable ? 'Available' : `Only ${formatNumber(availableRooms)} rooms left!`}</span></p>
-                <p className="info">Deposit:&nbsp; <span>{roomDeposit > 0 ? `Required ${roomDeposit}%` : "No required"}</span></p>
+                <p className="info">Deposit:&nbsp; <span>{roomDeposit > 0 ? `Required ${roomDeposit}%` : "Not required"}</span></p>
                 <p className="info">Beds:&nbsp; <span>{formatNumber(roomBeds)}</span></p>
                 <p className="info">Passengers:&nbsp; <span>{formatNumber(roomPassengers)}</span></p>
                 <Link href={`/rooms/${roomSlug}`}><a>View detail &nbsp;&nbsp; <Icon icon="akar-icons:arrow-right" color="#211f20"/></a></Link>
