@@ -1,0 +1,95 @@
+section.booking-overview {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h2.section-title {
+        font-size: 3em;
+        text-align: center;
+    }
+    div.container {
+        width: 100%;
+        max-width: 1420px;
+        background-color: $white;
+        padding: 2em;
+
+        div.booked-room {
+            display: grid;
+            grid-template-columns: 20% 1fr 20%;
+            grid-template-rows: 1fr;
+            column-gap: 2em;
+            padding: 1em;
+            border-bottom: 1px solid $gray;
+            &:last-of-type {
+                border-bottom: none;
+            }
+
+            div.image {
+                grid-column: 1 / 2;
+                grid-row: 1 / 2;
+                position: relative;
+                min-height: 180px;
+            }
+            div.body {
+                grid-column: 2 / 3;
+                grid-row: 1 / 2;
+                h4 {
+                    font-family: $playfair;
+                    font-size: 1.5em;
+                    margin-bottom: 1em;
+                }
+                p {
+                    color: $gray;
+                    font-weight: 600;
+                    margin-bottom: 0.5em;
+                    span {
+                        color: $black;
+                        &.green {
+                            color: $green-light;
+                        }
+                        &.red {
+                            color: $red-light;
+                        }
+                    }
+                }
+            }
+            div.aside {
+                grid-column: 3 / 3;
+                grid-row: 1 / 2;
+                p {
+                    text-align: right;
+                    font-family: $playfair;
+                    font-size: 1.5em;
+                    margin-bottom: 2em;
+                    font-weight: bold;
+                }
+                h4 {
+                    text-align: right;
+                    font-size: 2em;
+                    color: $red-dark;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        div.totals {
+            padding: 4em 0 2em;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            p {
+                font-weight: bold;
+                font-size: 1.5em;
+            }
+            h4 {
+                text-align: right;
+                font-size: 3em;
+                color: $red-dark;
+                font-weight: bold;
+                margin-left: 2em;
+            }
+        }
+    }
+}

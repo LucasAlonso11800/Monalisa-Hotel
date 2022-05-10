@@ -5,6 +5,7 @@ export { default as Footer } from './Layout/Footer';
 
 export { default as AboutUs } from './AboutUs';
 export { default as AvailableRoom } from './AvailableRoom';
+export { default as BookingOverview } from './BookingOverview';
 export { default as CheckAvailabilty } from './CheckAvailabilty';
 export { default as ContactUs } from './ContactUs';
 export { default as DiscoverOurRooms } from './DiscoverOurRooms';

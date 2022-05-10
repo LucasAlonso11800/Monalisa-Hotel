@@ -6,17 +6,28 @@ import { Icon } from '@iconify/react';
 import { formatNumber, getImageURL } from '../utils'
 // Types
 import type { AvailableRoom as Props } from '../props'
+import type { PriceType } from '../types';
 
 export default function AvailableRoom({ room, availableRooms, roomPrices, formik }: Props) {
     const { roomId, roomName, roomImage, roomDeposit, roomBeds, roomPassengers } = room;
     const isAvailable: boolean = availableRooms > 5;
 
-    const handleClick = (priceId: number) => () => {
-        formik.setFieldValue('selected', { ...formik.values.selected, [roomId]: { ...formik.values.selected[roomId], price: formik.values.selected[roomId].price === priceId ? null : priceId } });
+    const handleClick = (price: PriceType) => () => {
+        formik.setFieldValue('selected', {
+            ...formik.values.selected, [roomId]: {
+                ...formik.values.selected[roomId],
+                price: formik.values.selected[roomId].price?.priceId === price.priceId ? null : price,
+            }
+        });
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        formik.setFieldValue('selected', { ...formik.values.selected, [roomId]: { ...formik.values.selected[roomId], rooms: parseInt(e.target.value) } });
+        formik.setFieldValue('selected', {
+            ...formik.values.selected, [roomId]: {
+                ...formik.values.selected[roomId],
+                rooms: parseInt(e.target.value)
+            }
+        });
     };
 
     return (
@@ -35,10 +46,10 @@ export default function AvailableRoom({ room, availableRooms, roomPrices, formik
                 {roomPrices.map((price, index) => (
                     <p
                         key={price.priceId}
-                        className={formik.values.selected[roomId].price === price.priceId ? 'price active' : 'price'}
-                        onClick={handleClick(price.priceId)}
+                        className={formik.values.selected[roomId].price?.priceId === price.priceId ? 'price active' : 'price'}
+                        onClick={handleClick(price)}
                     >
-                        <Icon icon={`fontisto:checkbox-${formik.values.selected[roomId].price === price.priceId ? 'active' : 'passive'}`} />
+                        <Icon icon={`fontisto:checkbox-${formik.values.selected[roomId].price?.priceId === price.priceId ? 'active' : 'passive'}`} />
                         {index === 0 &&
                             <>Starting from&nbsp;<span>${price.roomPrice}</span>&nbsp;/&nbsp;<span>Night</span></>
                         }

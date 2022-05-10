@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React from 'react';
 // Components
-import { AvailableRoom, CheckAvailabilty, Header, Layout } from '../components';
+import { AvailableRoom, BookingOverview, CheckAvailabilty, Header, Layout } from '../components';
 // Const
 import { APIEndpoints } from '../const/APIEndpoints';
 import { SERVER_URL } from '../const/const';
@@ -63,6 +63,7 @@ export default function Reservation({ rooms, occupiedRooms, roomPrices }: Props)
                             />
                         ))}
                     </section>
+                    <BookingOverview formik={formik} rooms={rooms}/>
                 </div>
             </main>
         </Layout >
