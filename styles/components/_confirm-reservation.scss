@@ -33,6 +33,12 @@ section.confirm-reservation {
                     color: $black;
                 }
             }
+            @media all and (max-width: $desktop) {
+                width: 45%;
+            }
+            @media all and (max-width: $tablet) {
+                width: 100%;
+            }
         }
         textarea {
             width: 100%;

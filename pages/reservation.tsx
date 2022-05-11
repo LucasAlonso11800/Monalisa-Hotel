@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 // Components
 import { AvailableRoom, BookingOverview, CheckAvailabilty, ConfirmReservation, Header, Layout } from '../components';
 // Const
@@ -7,6 +7,7 @@ import { APIEndpoints } from '../const/APIEndpoints';
 import { SERVER_URL } from '../const/const';
 // Form
 import { useFormik } from 'formik';
+import * as yup from 'yup';
 // Utils
 import { getImageURL, getOccupiedRoomsNumber } from '../utils';
 // Types
@@ -16,6 +17,16 @@ import type { SelectedRoomType } from '../types';
 export default function Reservation({ rooms, occupiedRooms, roomPrices }: Props) {
     const [selectedRooms, setSelectedRooms] = useState<SelectedRoomType[]>([]);
     const [total, setTotal] = useState<number>(0);
+
+    const validationSchema = yup.object({
+        first_name: yup.string().required('Please enter your first name'),
+        last_name: yup.string().required('Please enter your last name'),
+        email: yup.string().required('Please enter your email'),
+        phone: yup.string().required('Please enter your phone'),
+        country: yup.string().required('Please enter your country'),
+        zip: yup.string().required('Please enter your zip code'),
+        notes: yup.string()
+    });
 
     const formik = useFormik({
         initialValues: {
@@ -47,6 +58,7 @@ export default function Reservation({ rooms, occupiedRooms, roomPrices }: Props)
             zip: '',
             notes: ''
         },
+        validationSchema,
         onSubmit: (values) => {
             console.log(values);
         }

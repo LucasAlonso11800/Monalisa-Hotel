@@ -10,6 +10,16 @@
         > div.container {
             padding: 0 40px;
             max-width: 1420px;
+            width: 100%;
+            @media all and (max-width: $desktop) {
+                font-size: 14px;
+            }
+            @media all and (max-width: $tablet-lg) {
+                font-size: 12px;
+            }
+            @media all and (max-width: $phone-lg) {
+                font-size: 10px;
+            }
             h2.section-title {
                 font-size: 3em;
                 text-align: center;
@@ -17,9 +27,9 @@
             form.check-availability {
                 transform: none;
                 width: 100%;
-            };
+            }
         }
-        
+
         section.available-rooms {
             h2.section-title {
                 margin-top: 2em;

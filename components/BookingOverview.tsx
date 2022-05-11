@@ -20,6 +20,7 @@ export default function BookingOverview({ selectedRooms, total }: any) {
                             <p className="info">Deposit:&nbsp; <span>{room.roomDeposit > 0 ? `Required ${room.roomDeposit}%` : "Not required"}</span></p>
                             <p className="info">Beds:&nbsp; <span>{formatNumber(room.roomBeds)}</span></p>
                             <p className="info">Passengers:&nbsp; <span>{formatNumber(room.roomPassengers)}</span></p>
+                            <p className="info">Rooms:&nbsp; <span>{formatNumber(values.rooms)}</span></p>
                         </div>
                         <div className="aside">
                             <p>Price</p>
