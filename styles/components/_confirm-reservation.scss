@@ -1,0 +1,63 @@
+section.confirm-reservation {
+    div.container {
+        background-color: $white;
+        padding: 4em 3em;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        input,
+        textarea {
+            font-size: 1.125em;
+            margin: 0 0.5em 3em;
+            padding: 0.5em 1em 0.5em 0;
+            transition: all 0.2s ease-in-out;
+            width: 380px;
+            border-bottom: 1px solid $gray-dark;
+            color: $gray;
+            &::placeholder {
+                color: $gray-dark;
+            }
+            &:hover {
+                color: $black;
+                border-bottom: 1px solid $black;
+                &::placeholder {
+                    color: $black;
+                }
+            }
+            &:focus {
+                color: $black;
+                border-bottom: 1px solid $black;
+                &::placeholder {
+                    color: $black;
+                }
+            }
+        }
+        textarea {
+            width: 100%;
+            resize: none;
+            min-height: 5em;
+        }
+        div.button-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            button {
+                color: $white;
+                font-size: 1em;
+                font-weight: 500;
+                text-transform: uppercase;
+                padding: 1em 3em;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-radius: 4px;
+                background-color: $green-dark;
+                cursor: pointer;
+            }
+        }
+    }
+}

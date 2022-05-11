@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // Components
-import { AvailableRoom, BookingOverview, CheckAvailabilty, Header, Layout } from '../components';
+import { AvailableRoom, BookingOverview, CheckAvailabilty, ConfirmReservation, Header, Layout } from '../components';
 // Const
 import { APIEndpoints } from '../const/APIEndpoints';
 import { SERVER_URL } from '../const/const';
@@ -11,8 +11,12 @@ import { useFormik } from 'formik';
 import { getImageURL, getOccupiedRoomsNumber } from '../utils';
 // Types
 import type { ReservationPage as Props } from '../props';
+import type { SelectedRoomType } from '../types';
 
 export default function Reservation({ rooms, occupiedRooms, roomPrices }: Props) {
+    const [selectedRooms, setSelectedRooms] = useState<SelectedRoomType[]>([]);
+    const [total, setTotal] = useState<number>(0);
+
     const formik = useFormik({
         initialValues: {
             selected: {
@@ -34,12 +38,32 @@ export default function Reservation({ rooms, occupiedRooms, roomPrices }: Props)
                 6: {
                     price: null, rooms: 1
                 },
-            }
+            },
+            first_name: '',
+            last_name: '',
+            email: '',
+            phone: '',
+            country: '',
+            zip: '',
+            notes: ''
         },
         onSubmit: (values) => {
             console.log(values);
         }
     });
+
+    useEffect(() => {
+        const array = Object.entries(formik.values.selected).reduce((acc: any, entry: any) => {
+            if (!entry[1].price) return acc;
+            return [...acc, { values: entry[1], room: rooms.find((room: any) => room.roomId === parseInt(entry[0])) }]
+        }, []);
+        setSelectedRooms(array);
+
+        const newTotal = array.reduce((acc: any, room: any) => {
+            return acc + room.values.price.roomPrice * room.values.rooms
+        }, 0);
+        setTotal(newTotal);
+    }, [formik.values.selected]);
 
     return (
         <Layout id="reservation" title="Reserve">
@@ -63,7 +87,12 @@ export default function Reservation({ rooms, occupiedRooms, roomPrices }: Props)
                             />
                         ))}
                     </section>
-                    <BookingOverview formik={formik} rooms={rooms}/>
+                    {selectedRooms.length > 0 &&
+                        <>
+                            <BookingOverview selectedRooms={selectedRooms} total={total} />
+                            <ConfirmReservation formik={formik} />
+                        </>
+                    }
                 </div>
             </main>
         </Layout >

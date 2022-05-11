@@ -1,4 +1,4 @@
-import type { AmenitiType, OccupiedRoomType, PriceType, RoomType, TestimonialType } from "./types";
+import type { AmenitiType, OccupiedRoomType, PriceType, RoomType, SelectedRoomType, TestimonialType } from "./types";
 
 // Pages
 
@@ -77,4 +77,9 @@ export type AvailableRoom = {
     availableRooms: number
     roomPrices: PriceType[]
     formik: any
+};
+
+export type BookingOverview = {
+    selectedRooms: SelectedRoomType[]
+    total: number
 };

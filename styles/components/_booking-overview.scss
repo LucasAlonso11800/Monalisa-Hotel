@@ -4,6 +4,7 @@ section.booking-overview {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 3em;
 
     h2.section-title {
         font-size: 3em;
@@ -20,7 +21,7 @@ section.booking-overview {
             grid-template-columns: 20% 1fr 20%;
             grid-template-rows: 1fr;
             column-gap: 2em;
-            padding: 1em;
+            padding: 2em 1em;
             border-bottom: 1px solid $gray;
             &:last-of-type {
                 border-bottom: none;

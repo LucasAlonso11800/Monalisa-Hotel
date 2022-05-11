@@ -7,6 +7,7 @@ export { default as AboutUs } from './AboutUs';
 export { default as AvailableRoom } from './AvailableRoom';
 export { default as BookingOverview } from './BookingOverview';
 export { default as CheckAvailabilty } from './CheckAvailabilty';
+export { default as ConfirmReservation } from './ConfirmReservation';
 export { default as ContactUs } from './ContactUs';
 export { default as DiscoverOurRooms } from './DiscoverOurRooms';
 export { default as RelatedRooms } from './RelatedRooms';

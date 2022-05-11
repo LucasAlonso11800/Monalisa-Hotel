@@ -37,6 +37,11 @@ export type PriceType = {
     priceName: string
     roomId: number
     roomPrice: number
+};
+
+export type SelectedRoomType = {
+    price: PriceType
+    room: RoomType
 }
 
 type OkPacket = {
