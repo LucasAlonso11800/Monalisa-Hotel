@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
         const rooms: OccupiedRoomType[] = await callSP({
             procedure: STORED_PROCEDURES.GET_OCCUPIED_ROOMS,
-            values: [new Date().toISOString().substring(0, 10)]
+            values: [req.body.dateFrom]
         });
         res.json(rooms);
     }

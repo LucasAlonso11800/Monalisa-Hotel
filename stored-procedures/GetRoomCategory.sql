@@ -13,15 +13,12 @@ BEGIN
 		room_category_passengers	AS roomPassengers,
 		MIN(room_price_price) 		AS roomMinimumPrice,
 		COUNT(room_id)				AS roomTotalRooms
-	FROM rooms
-	JOIN room_categories 
-		ON room_categories.room_category_id = room_room_category_id
+	FROM room_categories
 	JOIN room_prices 
 		ON room_prices.room_price_room_category_id = room_category_id
-	LEFT JOIN room_reserves 
-		ON room_reserves.room_reserve_room_id = room_id
-	LEFT JOIN reserves 
-		ON reserves.reserve_id = room_reserve_reserve_id
+        AND room_price_price_category_id = (SELECT room_price_price_category_id FROM room_prices ORDER BY room_price_price_category_id DESC LIMIT 1)
+	JOIN rooms
+		ON rooms.room_room_category_id = room_category_id
 	WHERE room_category_id = ProomCategoryId OR ProomCategoryId IS NULL
 	GROUP BY room_category_id;
 END

@@ -1,55 +1,78 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 // Components
 import { Icon } from '@iconify/react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
+// Const
+import { NEXT_WEEK, TODAY } from '../const/const';
+// Types
+import { CheckAvailabilty as Props } from '../props';
 
-const inDate = new Date();
-const outDate = new Date();
-outDate.setDate(outDate.getDate() + 7)
 
-export default function CheckAvailabilty() {
-    const [checkIn, setCheckIn] = useState<Date | null>(inDate);
-    const [checkOut, setCheckOut] = useState<Date | null>(outDate);
+export default function CheckAvailabilty(props: Props) {
+    const { dateFrom, setDateFrom, dateTo, setDateTo, passengers, setPassengers, onSubmit } = props;
 
-    const handleChange = (setDate: React.SetStateAction<any>, name: 'in' | 'out', newDate: Date | null) => {
-        setDate(newDate);
+    const router = useRouter();
+
+    const [checkIn, setCheckIn] = useState<string | Date>(dateFrom || TODAY);
+    const [checkOut, setCheckOut] = useState<string | Date>(dateTo || NEXT_WEEK);
+    const [guests, setGuests] = useState<number>(passengers || 2);
+    const [open, setOpen] = useState({ in: false, out: false });
+
+    const handleChange = (setDate: React.Dispatch<React.SetStateAction<string | Date>>, name: 'in' | 'out', newDate: Date) => {
+        setDate(newDate.toISOString().substring(0, 10));
         setOpen({ ...open, [name]: !open[name] });
     };
 
-    const [open, setOpen] = useState({ in: false, out: false });
+    const handleGuestsChange = (setGuests: React.Dispatch<React.SetStateAction<number>>) => (e: React.ChangeEvent<HTMLInputElement>) => {
+        setGuests(e.target.value !== '0' ? parseInt(e.target.value) : 1)
+    };
+
     const handleClick = (name: 'in' | 'out') => () => setOpen({ ...open, [name]: !open[name] });
 
-    const getDate = (date: Date | null) => <p>{moment(date).format('DD')}<span> / {moment(date).format('MMMM')}</span></p>;
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (onSubmit) return onSubmit(moment(checkIn).format('YYYY-MM-DD'));
+        router.push(`/reservation?from=${moment(checkIn).format('YYYY-MM-DD')}&to=${moment(checkOut).format('YYYY-MM-DD')}&guests=${guests}`);
+    };
+
+    const getDate = (date: string | Date) => <p>{moment(date).format('DD')}<span> / {moment(date).format('MMMM')}</span></p>;
 
     return (
-        <form className="check-availability">
+        <form className="check-availability" onSubmit={handleSubmit}>
             <div className="dates">
                 <div className="input-container">
                     <label htmlFor="in" className="label">Check-In</label>
                     <div className="container">
-                        {getDate(checkIn)}
+                        {getDate(dateFrom || checkIn)}
                         <Icon icon="akar-icons:chevron-down" onClick={handleClick('in')} />
                     </div>
-                    <DatePicker disabled onChange={e => handleChange(setCheckIn, 'in', e)} open={open.in} />
+                    <DatePicker disabled onChange={e => handleChange(setDateFrom || setCheckIn, 'in', e as Date)} open={open.in} />
                 </div>
                 <div className="input-container">
                     <label htmlFor="out" className="label">Check-Out</label>
                     <div className="container">
-                        {getDate(checkOut)}
+                        {getDate(dateTo || checkOut)}
                         <Icon icon="akar-icons:chevron-down" onClick={handleClick('out')} />
                     </div>
-                    <DatePicker disabled onChange={e => handleChange(setCheckOut, 'out', e)} open={open.out} />
+                    <DatePicker disabled onChange={e => handleChange(setDateTo || setCheckOut, 'out', e as Date)} open={open.out} />
                 </div>
                 <div className="input-container">
                     <label htmlFor="guests" className="label">Guests</label>
-                    <input name="guests" inputMode='numeric' className="input" />
+                    <input
+                        name="guests"
+                        type="number"
+                        className="input"
+                        value={passengers !== undefined ? passengers : guests}
+                        onChange={handleGuestsChange(setPassengers || setGuests)}
+                    />
                 </div>
             </div>
             <div className="button-container">
                 <p>Have a promotion code?</p>
-                <button>Check Availability</button>
+                <button type="submit">Check Availability</button>
             </div>
         </form>
     )

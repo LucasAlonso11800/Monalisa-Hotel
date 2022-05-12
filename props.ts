@@ -26,6 +26,9 @@ export type ReservationPage = {
     rooms: RoomType[]
     occupiedRooms: OccupiedRoomType[]
     roomPrices: PriceType[]
+    dateFrom: Date
+    dateTo: Date
+    guests: number
 };
 
 // Components
@@ -82,4 +85,14 @@ export type AvailableRoom = {
 export type BookingOverview = {
     selectedRooms: SelectedRoomType[]
     total: number
+};
+
+export type CheckAvailabilty = {
+    dateFrom?: string | Date
+    setDateFrom?: React.Dispatch<React.SetStateAction<string | Date>>
+    dateTo?: string | Date
+    setDateTo?: React.Dispatch<React.SetStateAction<string | Date>>
+    passengers?: number
+    setPassengers?: React.Dispatch<React.SetStateAction<number>>
+    onSubmit?: (date: string) => Promise<void>
 };
