@@ -6,7 +6,7 @@ import { Layout, Header, CheckAvailabilty, SingleRoomIntro, SingleRoomInfo, Rela
 import { getImageURL, getRelatedRoomsIndex } from '../../utils';
 // Const
 import { APIEndpoints } from '../../const/APIEndpoints';
-import { SERVER_URL } from '../../const/const';
+import { SERVER_URL, TODAY } from '../../const/const';
 // Types
 import type { GetStaticPropsContext } from 'next';
 import type { AmenitiType, OccupiedRoomType, RoomType } from '../../types';
@@ -43,7 +43,7 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
     try {
         const [rooms, occupiedRooms]: [RoomType[], OccupiedRoomType[]] = await Promise.all([
             await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data,
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_OCCUPIED_ROOMS}`)).data,
+            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_OCCUPIED_ROOMS}`, { dateFrom: TODAY })).data,
         ]);
 
         const room = rooms.find(r => r.roomSlug === params?.roomSlug);

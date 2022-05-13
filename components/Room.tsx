@@ -13,6 +13,7 @@ export default function Room({ room, index, direction, occupiedRooms }: Props) {
     
     const availableRooms: number = roomTotalRooms - occupiedRooms
     const isAvailable: boolean = availableRooms > 5;
+    const notAvailable: boolean = availableRooms === 0;
 
     return (
         <div className={"room " + direction}>
@@ -23,7 +24,7 @@ export default function Room({ room, index, direction, occupiedRooms }: Props) {
                     Start from <span>${roomMinimumPrice.toFixed(2)}</span>&nbsp;/&nbsp;<span>Night</span>
                 </p>
                 <p className="description">{roomDescription}</p>
-                <p className="info">Status:&nbsp; <span className={isAvailable ? 'green' : 'red'}>{isAvailable ? 'Available' : `Only ${formatNumber(availableRooms)} rooms left!`}</span></p>
+                <p className="info">Status:&nbsp; <span className={isAvailable ? 'green' : 'red'}>{isAvailable ? 'Available' : notAvailable ? 'Currently no rooms available' : `Only ${formatNumber(availableRooms)} rooms left!`}</span></p>
                 <p className="info">Deposit:&nbsp; <span>{roomDeposit > 0 ? `Required ${roomDeposit}%` : "Not required"}</span></p>
                 <p className="info">Beds:&nbsp; <span>{formatNumber(roomBeds)}</span></p>
                 <p className="info">Passengers:&nbsp; <span>{formatNumber(roomPassengers)}</span></p>

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { CheckAvailabilty, Header, Layout, Room } from '../../components';
 // Const
 import { APIEndpoints } from '../../const/APIEndpoints';
-import { SERVER_URL } from '../../const/const';
+import { SERVER_URL, TODAY } from '../../const/const';
 // Types
 import type { RoomsPage as Props } from '../../props';
 import { getOccupiedRoomsNumber } from '../../utils';
@@ -36,7 +36,7 @@ export async function getStaticProps() {
     try {
         const [rooms, occupiedRooms] = await Promise.all([
             await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data,
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_OCCUPIED_ROOMS}`)).data,
+            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_OCCUPIED_ROOMS}`, { dateFrom: TODAY })).data,
         ]);
         return {
             props: { rooms, occupiedRooms },

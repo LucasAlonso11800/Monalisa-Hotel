@@ -9,8 +9,7 @@ export default function SingleRoomInfo({ description, amenities }: SingleRoomInf
         <section className="single-room-info">
             <div className="container">
                 <h2 className="section-title">Description</h2>
-                {/* <p className="description">{description}</p> */}
-                <p className="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti ipsa tempore ipsam ratione temporibus deleniti voluptates minima vitae. Rerum expedita officia tempore cum sed, ipsum repudiandae ullam velit eum delectus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea laboriosam quo, quam dolorem, fuga consequatur iusto aut minima temporibus voluptates tenetur, unde doloribus error ipsam cumque deserunt dolore iure porro. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga natus, facere, ipsa incidunt minima eveniet perspiciatis architecto, enim nam fugit iusto. Alias earum labore magnam voluptas iure quo aliquid! Blanditiis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, ipsum temporibus dignissimos sunt est necessitatibus repellendus possimus cum. Quibusdam facilis sequi reiciendis consectetur iste molestias nisi dolore rerum aliquam qui.</p>
+                <p className="description">{description}</p>
                 <h2 className="section-title">Amenities</h2>
                 <div className="amenities">
                     {amenities.map((ameniti) => (
