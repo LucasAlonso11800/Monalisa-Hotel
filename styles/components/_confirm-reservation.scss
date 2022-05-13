@@ -63,6 +63,27 @@ section.confirm-reservation {
                 border-radius: 4px;
                 background-color: $green-dark;
                 cursor: pointer;
+                &:disabled {
+                    background-color: $green-light;
+                }
+            }
+        }
+        div.bottom {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            svg {
+                font-size: 4em;
+                margin-top: 0.75em;
+            }    
+            p {
+                text-align: center;
+                color: $red-dark;
+                margin-top: 2em;
+                font-size: 1.5em;
+                padding-bottom: 0.25em;
+                border-bottom: 1px solid $red-dark;
             }
         }
     }

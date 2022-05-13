@@ -36,6 +36,8 @@ export type PriceType = {
     priceId: number
     priceName: string
     roomId: number
+    roomName: string
+    roomPassengers: number
     roomPrice: number
 };
 

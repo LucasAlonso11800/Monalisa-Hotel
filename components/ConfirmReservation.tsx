@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { Icon } from '@iconify/react';
+import type { ConfirmReservation as Props } from '../props';
 
-export default function ConfirmReservation({ formik }: any) {
+export default function ConfirmReservation({ formik, error, submitting }: Props) {
     return (
         <section className="confirm-reservation">
             <h2 className="section-title">Confirm your reservation</h2>
@@ -55,7 +57,13 @@ export default function ConfirmReservation({ formik }: any) {
                 />
 
                 <div className="button-container">
-                    <button type="button" onClick={formik.handleSubmit}>Confirm</button>
+                    <button disabled={submitting} type="button" onClick={formik.handleSubmit}>Confirm</button>
+                </div>
+                <div className="bottom">
+                    {submitting && <Icon icon="eos-icons:bubble-loading" />}
+                    {error && !submitting &&
+                        <p>{error}</p>
+                    }
                 </div>
             </div>
         </section>

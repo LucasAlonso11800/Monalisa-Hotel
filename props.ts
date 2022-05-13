@@ -91,6 +91,12 @@ export type BookingOverview = {
     total: number
 };
 
+export type ConfirmReservation = {
+    formik: any
+    error: string | null
+    submitting: boolean
+}
+
 export type CheckAvailabilty = {
     dateFrom?: string | Date
     setDateFrom?: React.Dispatch<React.SetStateAction<string | Date>>

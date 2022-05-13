@@ -9,7 +9,8 @@ import { PriceType } from '../../types';
 type SelectedType = {
     price: PriceType
     rooms: number
-}
+};
+
 type ValuesType = {
     country: string
     dateFrom: string
@@ -39,6 +40,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const { values } = req.body as { values: ValuesType };
 
         const roomIds: any[] = [];
+        
+        // Check amount of passengers
+        const maximumPassengers: number = values.selected.reduce((acc, room) => acc + room.price.roomPassengers * room.rooms, 0);
+        if (values.passengers > maximumPassengers) return res.json({ code: 0, message: `${values.passengers} passengers don't fit on the selected rooms. Maximum is ${maximumPassengers}` });
+
         // Check that there are rooms available returning room ids
         await Promise.all(values.selected.map(async (value) => {
             const response: CheckAvailabiltyResponseType[] = await callSP({
@@ -46,7 +52,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 values: [values.dateFrom, value.price.roomId, value.rooms]
             });
             if (response[0].code === 1 && response[0].roomId) return roomIds.push(...response.map(res => res.roomId));
-            res.json({ code: 0, message: 'Some rooms are not available'});
+            res.json({
+                code: 0,
+                message: `${value.rooms} ${value.price.roomName}${value.rooms > 1 ? 's are' : 'is'} not available on this date`
+            });
         }));
 
         // Ins reserve returning reserve_id
@@ -62,7 +71,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             });
         }));
 
-        res.json({ code: 1, message: ''});
+        res.json({ code: 1, message: '' });
     }
     catch (error) {
         throw (error)

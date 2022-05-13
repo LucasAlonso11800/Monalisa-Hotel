@@ -27,10 +27,12 @@ export default function Reservation(props: Props) {
     const [checkIn, setCheckIn] = useState<string | Date>(dateFrom);
     const [checkOut, setCheckOut] = useState<string | Date>(dateTo);
     const [guests, setGuests] = useState<number>(props.guests || 2);
-
+    
     const [selectedRooms, setSelectedRooms] = useState<SelectedRoomType[]>([]);
     const [total, setTotal] = useState<number>(0);
     const [loading, setLoading] = useState<boolean>(false);
+    const [submitting, setSubmitting] = useState<boolean>(false);
+    const [error, setError] = useState<string | null>(null);
 
     const validationSchema = yup.object({
         first_name: yup.string().required('Please enter your first name').max(40, 'Maximum length is 40 characters'),
@@ -44,6 +46,7 @@ export default function Reservation(props: Props) {
 
     const handleSubmit = async (values: any) => {
         try {
+            setSubmitting(true);
             const response: AddReserveResponseType = await (await axios.post(`${SERVER_URL}/${APIEndpoints.ADD_ROOM_RESERVE}`, {
                 values: {
                     ...values,
@@ -54,8 +57,9 @@ export default function Reservation(props: Props) {
                     selected: Object.values(values.selected).filter((room: any) => room.price)
                 }
             })).data;
-            if (response.code === 0) console.log(response.message);
-            if (response.code === 1) router.push('/reserve-success');
+            setSubmitting(false);
+            if (response.code === 0) return setError(response.message);
+            if (response.code === 1) return router.push('/reserve-success');
         }
         catch (err) {
             console.log(err)
@@ -138,7 +142,7 @@ export default function Reservation(props: Props) {
                             {selectedRooms.length > 0 &&
                                 <>
                                     <BookingOverview selectedRooms={selectedRooms} total={total} />
-                                    <ConfirmReservation formik={formik} />
+                                    <ConfirmReservation formik={formik} error={error} submitting={submitting}/>
                                 </>
                             }
                         </>
