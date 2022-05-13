@@ -42,7 +42,22 @@ export type PriceType = {
 export type SelectedRoomType = {
     price: PriceType
     room: RoomType
-}
+};
+
+export type AddReserveResponseType = {
+    code: 0 | 1,
+    message: string
+};
+
+export type ReserveType = {
+    reserveId: number
+    reservePrice: number
+    reserveFrom: string
+    reserveTo: string
+    reservePassengers: number
+    reserveOwner: string
+    reserveRooms: number
+};
 
 type OkPacket = {
     fieldCount: number

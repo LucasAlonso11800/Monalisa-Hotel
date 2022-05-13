@@ -23,7 +23,7 @@ export async function callSP<Type>(params: CallSPParams): Promise<Type[]> {
     });
 
     const query: string = `CALL ${process.env.MYSQL_DATABASE}.${procedure}(${formatedValues.map(String).join(',')})`;
-    console.log(query)
+
     try {
         const results = await db.query(query, values) as SPResponse<Type>;
         await db.end();

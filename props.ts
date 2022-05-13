@@ -1,4 +1,4 @@
-import type { AmenitiType, OccupiedRoomType, PriceType, RoomType, SelectedRoomType, TestimonialType } from "./types";
+import type { AmenitiType, OccupiedRoomType, PriceType, ReserveType, RoomType, SelectedRoomType, TestimonialType } from "./types";
 
 // Pages
 
@@ -29,6 +29,10 @@ export type ReservationPage = {
     dateFrom: Date
     dateTo: Date
     guests: number
+};
+
+export type ReserveSuccessPage = {
+    reserve: ReserveType
 };
 
 // Components

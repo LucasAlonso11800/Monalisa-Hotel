@@ -46,7 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 values: [values.dateFrom, value.price.roomId, value.rooms]
             });
             if (response[0].code === 1 && response[0].roomId) return roomIds.push(...response.map(res => res.roomId));
-            throw new Error("Rooms not available");
+            res.json({ code: 0, message: 'Some rooms are not available'});
         }));
 
         // Ins reserve returning reserve_id
@@ -61,7 +61,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 values: [roomId, addReserveResponse[0].reserveId]
             });
         }));
-        res.json({ roomIds, addReserveResponse });
+
+        res.json({ code: 1, message: ''});
     }
     catch (error) {
         throw (error)

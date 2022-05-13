@@ -7,4 +7,5 @@ export enum STORED_PROCEDURES {
     CHECK_AVAILABILITY = "CheckAvailability",
     ADD_RESERVE = "AddReserve",
     ADD_ROOM_RESERVE = "AddRoomReserve",
+    GET_RESERVE = "GetReserve"
 };

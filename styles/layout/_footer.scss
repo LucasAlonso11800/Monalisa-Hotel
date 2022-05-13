@@ -21,6 +21,7 @@ footer.footer {
                 color: $gray-dark;
                 transition: all 0.2s ease-in-out;
                 margin-bottom: 1em;
+                cursor: pointer;
                 &:hover {
                     color: $white;
                 }

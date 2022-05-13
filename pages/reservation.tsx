@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 // Components
 import { AvailableRoom, BookingOverview, CheckAvailabilty, ConfirmReservation, Header, Layout } from '../components';
 // Const
@@ -12,11 +13,13 @@ import * as yup from 'yup';
 import { getImageURL, getOccupiedRoomsNumber } from '../utils';
 // Types
 import type { ReservationPage as Props } from '../props';
-import type { SelectedRoomType } from '../types';
+import type { AddReserveResponseType, SelectedRoomType } from '../types';
 import type { GetServerSidePropsContext } from 'next';
 
 export default function Reservation(props: Props) {
     const { roomPrices, dateFrom, dateTo } = props;
+
+    const router = useRouter();
 
     const [rooms, setRooms] = useState(props.rooms);
     const [occupiedRooms, setOccupiedRooms] = useState(props.occupiedRooms);
@@ -40,20 +43,21 @@ export default function Reservation(props: Props) {
 
     const handleSubmit = async (values: any) => {
         try {
-            const response = await (await axios.post(`${SERVER_URL}/${APIEndpoints.ADD_ROOM_RESERVE}`, {
+            const response: AddReserveResponseType = await (await axios.post(`${SERVER_URL}/${APIEndpoints.ADD_ROOM_RESERVE}`, {
                 values: {
                     ...values,
                     total,
                     passengers: guests,
-                    dateFrom: checkIn, 
+                    dateFrom: checkIn,
                     dateTo: checkOut,
                     selected: Object.values(values.selected).filter((room: any) => room.price)
                 }
             })).data;
-            console.log(response);
+            if (response.code === 0) console.log(response.message);
+            if (response.code === 1) router.push('/reserve-success');
         }
         catch (err) {
-            console.log('whatever')
+            console.log(err)
         }
     };
 
