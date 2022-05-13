@@ -28,6 +28,12 @@
                 transform: none;
                 width: 100%;
             }
+            > svg {
+                display: block;
+                margin: auto;
+                font-size: 6em;
+                margin-top: 1em;
+            }
         }
 
         section.available-rooms {

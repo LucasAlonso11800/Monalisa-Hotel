@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 // Components
 import { AvailableRoom, BookingOverview, CheckAvailabilty, ConfirmReservation, Header, Layout } from '../components';
+import { Icon } from '@iconify/react';
 // Const
 import { APIEndpoints } from '../const/APIEndpoints';
 import { NEXT_WEEK, SERVER_URL, TODAY } from '../const/const';
@@ -119,7 +120,7 @@ export default function Reservation(props: Props) {
                         setPassengers={setGuests}
                         onSubmit={fetchData}
                     />
-                    {loading && <p>Loading ...</p>}
+                    {loading && <Icon icon="eos-icons:bubble-loading"/>}
                     {!loading &&
                         <>
                             <section className="available-rooms">
