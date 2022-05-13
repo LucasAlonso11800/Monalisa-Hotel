@@ -11,6 +11,7 @@ import type { PriceType } from '../types';
 export default function AvailableRoom({ room, availableRooms, roomPrices, formik }: Props) {
     const { roomId, roomName, roomImage, roomDeposit, roomBeds, roomPassengers } = room;
     const isAvailable: boolean = availableRooms > 5;
+    const notAvailable: boolean = availableRooms === 0;
 
     const handleClick = (price: PriceType) => () => {
         formik.setFieldValue('selected', {
@@ -31,7 +32,7 @@ export default function AvailableRoom({ room, availableRooms, roomPrices, formik
     };
 
     return (
-        <div className="available-room">
+        <div className={`available-room ${notAvailable ? 'hidden' : ''}`}>
             <div className="image">
                 <Image src={getImageURL(roomImage, 'rooms')} layout="fill" objectFit='cover' />
             </div>
