@@ -31,23 +31,23 @@ export default function Home({ rooms, testimonials }: Props) {
     )
 };
 
-export async function getStaticProps() {
-    try {
-        const [rooms, testimonials] = await Promise.all([
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data,
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_TESTIMONIALS}`)).data,
-        ]);
-        return {
-            props: { rooms, testimonials },
-            revalidate: 60 * 60 * 24
-        }
-    }
-    catch {
-        return {
-            redirect: {
-                destination: '/404',
-                permanent: false
-            }
-        }
-    }
-};
+// export async function getStaticProps() {
+//     try {
+//         const [rooms, testimonials] = await Promise.all([
+//             await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data,
+//             await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_TESTIMONIALS}`)).data,
+//         ]);
+//         return {
+//             props: { rooms, testimonials },
+//             revalidate: 60 * 60 * 24
+//         }
+//     }
+//     catch {
+//         return {
+//             redirect: {
+//                 destination: '/404',
+//                 permanent: false
+//             }
+//         }
+//     }
+// };
