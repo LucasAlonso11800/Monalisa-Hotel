@@ -7,7 +7,7 @@ import Image from 'next/image'
 export default function ContactUs() {
     return (
         <section className="contact-us">
-            <Image src={getImageURL("map.png")} width={1200} height={800} objectFit="cover"/>
+            <Image src={getImageURL("map.png")} alt="Map" width={1200} height={800} objectFit="cover"/>
             <div className="column">
                 <h6 className="section-heading">Information</h6>
                 <h2 className="section-title">Contact Us</h2>

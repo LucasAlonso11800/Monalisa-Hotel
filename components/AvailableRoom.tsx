@@ -34,7 +34,7 @@ export default function AvailableRoom({ room, availableRooms, roomPrices, formik
     return (
         <div className={`available-room ${notAvailable ? 'hidden' : ''}`}>
             <div className="image">
-                <Image src={getImageURL(roomImage, 'rooms')} layout="fill" objectFit='cover' />
+                <Image src={getImageURL(roomImage, 'rooms')} alt={roomName} layout="fill" objectFit='cover' />
             </div>
             <div className="body">
                 <h4>{roomName}</h4>

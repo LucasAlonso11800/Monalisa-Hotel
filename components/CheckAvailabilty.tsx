@@ -45,7 +45,7 @@ export default function CheckAvailabilty(props: Props) {
         }
         if(moment(checkIn).diff(moment(TODAY)) < 0) return setCheckIn(TODAY);
         if(moment(checkOut).diff(moment(checkIn)) < 0) return setCheckOut(checkIn);
-    }, [checkIn, checkOut, dateFrom, dateTo]);
+    }, [checkIn, checkOut, dateFrom, dateTo, setDateFrom, setDateTo]);
     
 
     const getDate = (date: string | Date) => <p>{moment(date).format('DD')}<span> / {moment(date).format('MMMM')}</span></p>;

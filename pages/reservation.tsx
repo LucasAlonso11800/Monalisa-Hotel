@@ -95,7 +95,7 @@ export default function Reservation(props: Props) {
         }, 0);
         const dayDiff = moment(checkOut).diff(moment(checkIn), 'days');
         setTotal(newTotal * dayDiff);
-    }, [formik.values.selected, checkIn, checkOut]);
+    }, [formik.values.selected, checkIn, checkOut, rooms]);
 
     const fetchData = async (date: string) => {
         setLoading(true);

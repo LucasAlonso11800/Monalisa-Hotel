@@ -17,7 +17,7 @@ export default function BookingOverview({ selectedRooms, total, dateFrom, dateTo
                 {selectedRooms.map(({ room, values }) => (
                     <div className="booked-room" key={room.roomId}>
                         <div className="image">
-                            <Image src={getImageURL(room.roomImage, 'rooms')} layout="fill" objectFit='cover' />
+                            <Image src={getImageURL(room.roomImage, 'rooms')} alt={room.roomName} layout="fill" objectFit='cover' />
                         </div>
                         <div className="body">
                             <h4>{room.roomName}</h4>

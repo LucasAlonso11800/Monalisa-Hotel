@@ -12,14 +12,14 @@ export default function Testimonials({ testimonials }: Props) {
             if (index === testimonials.length - 1) return setIndex(0);
             setIndex(index + 1);
         }, 10000);
-    }, [index]);
+    }, [index, testimonials]);
 
     return (
         <section className="testimonials">
             <div className="container">
                 <h6 className="section-heading">Testimonial</h6>
                 <h2 className="section-title">What Clients Say</h2>
-                <p className="testimonial">"{testimonials[index].testimonialText}"</p>
+                <p className="testimonial">&quot;{testimonials[index].testimonialText}&quot;</p>
                 <div className="stars">
                     <Icon icon={`dashicons:star-${testimonials[index].testimonialRating >= 1 ? 'filled' : 'empty'}`} fontSize={32} color="#FFCE31" />
                     <Icon icon={`dashicons:star-${testimonials[index].testimonialRating >= 2 ? 'filled' : 'empty'}`} fontSize={32} color="#FFCE31" />

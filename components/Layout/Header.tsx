@@ -20,7 +20,7 @@ export default function Header({ children, image }: Props) {
             </nav>
             <div className="image-container">
                 <div className="overlay"></div>
-                <Image src={image} layout='fill' objectFit='cover' priority />
+                <Image src={image} alt="header" layout='fill' objectFit='cover' priority />
                 {children}
             </div>
         </header>
