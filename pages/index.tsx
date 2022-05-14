@@ -21,12 +21,12 @@ export default function Home({ rooms, testimonials }: Props) {
                 <p className="subtitle">A place to experience and enjoy life</p>
                 <CheckAvailabilty />
             </Header>
-            <main className="main">
+            {/* <main className="main">
                 <LittleAboutUs />
                 <DiscoverOurRooms rooms={rooms} />
                 <Testimonials testimonials={testimonials} />
                 <ContactUs />
-            </main>
+            </main> */}
         </Layout>
     )
 };
