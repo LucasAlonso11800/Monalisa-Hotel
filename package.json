@@ -6,6 +6,10 @@
       "email": "lucasalonso11800@gmail.com",
       "url": "https://lucasalonso-personal-portfolio.netlify.app/"
   },
+  "engines": {
+    "node": "16.15.0",
+    "npm": "8.5.5"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev -- -p 3005",
