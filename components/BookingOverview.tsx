@@ -1,15 +1,20 @@
 import React from 'react';
+import moment from 'moment';
 // Components
 import Image from 'next/image';
 // Utils
 import { formatNumber, getImageURL } from '../utils';
+// Types
+import type { BookingOverview as Props } from '../props';
 
-export default function BookingOverview({ selectedRooms, total }: any) {
+export default function BookingOverview({ selectedRooms, total, dateFrom, dateTo }: Props) {
+    const nights: number = moment(dateTo).diff(moment(dateFrom), 'days');
     return (
         <section className="booking-overview">
             <h2 className="section-title">Your booking overview</h2>
             <div className="container">
-                {selectedRooms.map(({ room, values }: any) => (
+                <h4>{moment(dateFrom).format('DD/MM/YYYY')} - {moment(dateTo).format('DD/MM/YYYY')} - {nights} {nights > 1 ? 'Nights' : 'Night'}</h4>
+                {selectedRooms.map(({ room, values }) => (
                     <div className="booked-room" key={room.roomId}>
                         <div className="image">
                             <Image src={getImageURL(room.roomImage, 'rooms')} layout="fill" objectFit='cover' />

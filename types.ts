@@ -42,7 +42,10 @@ export type PriceType = {
 };
 
 export type SelectedRoomType = {
-    price: PriceType
+    values: {
+        price: PriceType
+        rooms: number
+    }
     room: RoomType
 };
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 import { useRouter } from 'next/router';
 // Components
 import { AvailableRoom, BookingOverview, CheckAvailabilty, ConfirmReservation, Header, Layout } from '../components';
@@ -14,7 +15,7 @@ import * as yup from 'yup';
 import { getImageURL, getOccupiedRoomsNumber } from '../utils';
 // Types
 import type { ReservationPage as Props } from '../props';
-import type { AddReserveResponseType, SelectedRoomType } from '../types';
+import type { AddReserveResponseType, RoomType, SelectedRoomType } from '../types';
 import type { GetServerSidePropsContext } from 'next';
 
 export default function Reservation(props: Props) {
@@ -27,7 +28,7 @@ export default function Reservation(props: Props) {
     const [checkIn, setCheckIn] = useState<string | Date>(dateFrom);
     const [checkOut, setCheckOut] = useState<string | Date>(dateTo);
     const [guests, setGuests] = useState<number>(props.guests || 2);
-    
+
     const [selectedRooms, setSelectedRooms] = useState<SelectedRoomType[]>([]);
     const [total, setTotal] = useState<number>(0);
     const [loading, setLoading] = useState<boolean>(false);
@@ -83,17 +84,18 @@ export default function Reservation(props: Props) {
     });
 
     useEffect(() => {
-        const array = Object.entries(formik.values.selected).reduce((acc: any, entry: any) => {
+        const array: SelectedRoomType[] = Object.entries(formik.values.selected).reduce((acc: any[], entry: any) => {
             if (!entry[1].price) return acc;
-            return [...acc, { values: entry[1], room: rooms.find((room: any) => room.roomId === parseInt(entry[0])) }]
+            return [...acc, { values: entry[1], room: rooms.find((room: RoomType) => room.roomId === parseInt(entry[0])) }]
         }, []);
         setSelectedRooms(array);
 
-        const newTotal = array.reduce((acc: any, room: any) => {
+        const newTotal: number = array.reduce((acc: number, room) => {
             return acc + room.values.price.roomPrice * room.values.rooms
         }, 0);
-        setTotal(newTotal);
-    }, [formik.values.selected]);
+        const dayDiff = moment(checkOut).diff(moment(checkIn), 'days');
+        setTotal(newTotal * dayDiff);
+    }, [formik.values.selected, checkIn, checkOut]);
 
     const fetchData = async (date: string) => {
         setLoading(true);
@@ -125,7 +127,7 @@ export default function Reservation(props: Props) {
                         setPassengers={setGuests}
                         onSubmit={fetchData}
                     />
-                    {loading && <Icon icon="eos-icons:bubble-loading"/>}
+                    {loading && <Icon icon="eos-icons:bubble-loading" />}
                     {!loading &&
                         <>
                             <section className="available-rooms">
@@ -142,8 +144,17 @@ export default function Reservation(props: Props) {
                             </section>
                             {selectedRooms.length > 0 &&
                                 <>
-                                    <BookingOverview selectedRooms={selectedRooms} total={total} />
-                                    <ConfirmReservation formik={formik} error={error} submitting={submitting}/>
+                                    <BookingOverview
+                                        selectedRooms={selectedRooms}
+                                        total={total}
+                                        dateFrom={checkIn}
+                                        dateTo={checkOut}
+                                    />
+                                    <ConfirmReservation
+                                        formik={formik}
+                                        error={error}
+                                        submitting={submitting}
+                                    />
                                 </>
                             }
                         </>

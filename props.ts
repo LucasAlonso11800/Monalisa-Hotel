@@ -89,6 +89,8 @@ export type AvailableRoom = {
 export type BookingOverview = {
     selectedRooms: SelectedRoomType[]
     total: number
+    dateFrom: string | Date
+    dateTo: string | Date
 };
 
 export type ConfirmReservation = {

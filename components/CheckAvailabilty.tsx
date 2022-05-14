@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 // Components
 import { Icon } from '@iconify/react';
@@ -37,6 +37,16 @@ export default function CheckAvailabilty(props: Props) {
         if (onSubmit) return onSubmit(moment(dateFrom || checkIn).format('YYYY-MM-DD'));
         router.push(`/reservation?from=${moment(checkIn).format('YYYY-MM-DD')}&to=${moment(checkOut).format('YYYY-MM-DD')}&guests=${guests}`);
     };
+
+    useEffect(() => {
+        if(setDateFrom && setDateTo && dateFrom){
+            if(moment(dateFrom).diff(moment(TODAY)) < 0) return setDateFrom(TODAY);
+            if(moment(dateTo).diff(moment(dateFrom)) < 0) return setDateTo(dateFrom);
+        }
+        if(moment(checkIn).diff(moment(TODAY)) < 0) return setCheckIn(TODAY);
+        if(moment(checkOut).diff(moment(checkIn)) < 0) return setCheckOut(checkIn);
+    }, [checkIn, checkOut, dateFrom, dateTo]);
+    
 
     const getDate = (date: string | Date) => <p>{moment(date).format('DD')}<span> / {moment(date).format('MMMM')}</span></p>;
 

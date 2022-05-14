@@ -5,6 +5,8 @@ import { STORED_PROCEDURES } from '../../const/StoredProcedures';
 // Types
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { PriceType } from '../../types';
+import moment from 'moment';
+import { TODAY } from '../../const/const';
 
 type SelectedType = {
     price: PriceType
@@ -38,9 +40,12 @@ type AddReserveResponseType = {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         const { values } = req.body as { values: ValuesType };
-
         const roomIds: any[] = [];
-        
+        if (moment(values.dateFrom).diff(moment(TODAY)) < 0 || moment(values.dateTo).diff(moment(values.dateFrom)) < 0) {
+            return res.json({ code: 0, message: 'Invalid date' })
+        };
+        // Validate dates
+
         // Check amount of passengers
         const maximumPassengers: number = values.selected.reduce((acc, room) => acc + room.price.roomPassengers * room.rooms, 0);
         if (values.passengers > maximumPassengers) return res.json({ code: 0, message: `${values.passengers} passengers don't fit on the selected rooms. Maximum is ${maximumPassengers}` });
