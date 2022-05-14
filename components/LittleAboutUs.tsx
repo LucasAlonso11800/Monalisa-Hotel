@@ -13,7 +13,7 @@ export default function LittleAboutUs() {
                     <div className="column">
                         <div></div>
                         <h2 className="section-title">A best place to enjoy your life</h2>
-                        <p>The Monalisa Hotel is a modern, elegant 4-star hotel overlooking the sea, perfect for a romantic, charming vacation, in the enchanting setting of Amalfi Coast in southern Italy.</p>
+                        <p>The Monalisa Hotel is a modern, elegant 5-star hotel overlooking the sea, perfect for a romantic, charming vacation, in the enchanting setting of Amalfi Coast in southern Italy.</p>
                         <p><span className='author'>Lucas Alonso</span> - Developer</p>
                     </div>
                 </div>

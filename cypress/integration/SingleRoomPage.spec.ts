@@ -79,10 +79,10 @@ describe('Single room page renders server data', () => {
                     .invoke('text')
                     .should('contain', formatNumber(props.room.roomPassengers));
 
-                // cy.get('section.single-room-info')
-                //     .find('p.description')
-                //     .invoke('text')
-                //     .should('eq', props.room.roomDescription);
+                cy.get('section.single-room-info')
+                    .find('p.description')
+                    .invoke('text')
+                    .should('eq', props.room.roomDescription);
 
                 cy.get('section.single-room-info')
                     .find('p.ameniti')

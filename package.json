@@ -1,6 +1,11 @@
 {
   "name": "monalisa-hotel",
   "version": "0.1.0",
+  "author": {
+      "name": "Lucas Alonso",
+      "email": "lucasalonso11800@gmail.com",
+      "url": "https://lucasalonso-personal-portfolio.netlify.app/"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev -- -p 3005",

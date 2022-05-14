@@ -6,16 +6,44 @@ section.confirm-reservation {
         align-items: center;
         flex-wrap: wrap;
         justify-content: space-between;
-
+        div.input-container {
+            position: relative;
+            width: 380px;
+            @media all and (max-width: $desktop) {
+                width: 45%;
+            }
+            @media all and (max-width: $tablet) {
+                width: 100%;
+            }
+        }
+        div.area-container {
+            position: relative;
+            width: 100%;
+            textarea {
+                width: 100%;
+                resize: none;
+                min-height: 5em;
+            }
+        }
+        span.error {
+            position: absolute;
+            font-size: 0.75em;
+            color: $red-dark;
+            top: -1.25em;
+            left: 0.75em;
+        }
         input,
         textarea {
             font-size: 1.125em;
             margin: 0 0.5em 3em;
             padding: 0.5em 1em 0.5em 0;
             transition: all 0.2s ease-in-out;
-            width: 380px;
+            width: 100%;
             border-bottom: 1px solid $gray-dark;
             color: $gray;
+            &.filled {
+                color: $black;
+            }
             &::placeholder {
                 color: $gray-dark;
             }
@@ -33,17 +61,14 @@ section.confirm-reservation {
                     color: $black;
                 }
             }
-            @media all and (max-width: $desktop) {
-                width: 45%;
+            &.error {
+                background-color: rgba($red-dark, 0.3);
+                border-bottom: 1px solid $red-dark;
+                &:focus {
+                    background-color: transparent;
+                    border-bottom: 1px solid $black;
+                }
             }
-            @media all and (max-width: $tablet) {
-                width: 100%;
-            }
-        }
-        textarea {
-            width: 100%;
-            resize: none;
-            min-height: 5em;
         }
         div.button-container {
             width: 100%;
@@ -76,7 +101,7 @@ section.confirm-reservation {
             svg {
                 font-size: 4em;
                 margin-top: 0.75em;
-            }    
+            }
             p {
                 text-align: center;
                 color: $red-dark;

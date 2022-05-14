@@ -34,7 +34,7 @@ export default function CheckAvailabilty(props: Props) {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (onSubmit) return onSubmit(moment(checkIn).format('YYYY-MM-DD'));
+        if (onSubmit) return onSubmit(moment(dateFrom || checkIn).format('YYYY-MM-DD'));
         router.push(`/reservation?from=${moment(checkIn).format('YYYY-MM-DD')}&to=${moment(checkOut).format('YYYY-MM-DD')}&guests=${guests}`);
     };
 
@@ -43,7 +43,7 @@ export default function CheckAvailabilty(props: Props) {
     return (
         <form className="check-availability" onSubmit={handleSubmit}>
             <div className="dates">
-                <div className="input-container">
+                <div className="input-container" data-test-id="check-in">
                     <label htmlFor="in" className="label">Check-In</label>
                     <div className="container">
                         {getDate(dateFrom || checkIn)}
@@ -51,7 +51,7 @@ export default function CheckAvailabilty(props: Props) {
                     </div>
                     <DatePicker disabled onChange={e => handleChange(setDateFrom || setCheckIn, 'in', e as Date)} open={open.in} />
                 </div>
-                <div className="input-container">
+                <div className="input-container" data-test-id="check-out">
                     <label htmlFor="out" className="label">Check-Out</label>
                     <div className="container">
                         {getDate(dateTo || checkOut)}

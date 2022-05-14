@@ -71,7 +71,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             });
         }));
 
-        res.json({ code: 1, message: '' });
+        res.json({ code: 1, message: addReserveResponse[0].reserveId });
     }
     catch (error) {
         throw (error)

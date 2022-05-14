@@ -38,9 +38,9 @@ export default function Reservation(props: Props) {
         first_name: yup.string().required('Please enter your first name').max(40, 'Maximum length is 40 characters'),
         last_name: yup.string().required('Please enter your last name').max(40, 'Maximum length is 40 characters'),
         email: yup.string().required('Please enter your email').max(100, 'Maximum length is 100 characters'),
-        phone: yup.number().required('Please enter your phone'),
         country: yup.string().required('Please enter your country').max(40, 'Maximum length is 40 characters'),
         zip: yup.string().required('Please enter your zip code').max(20, 'Maximum length is 20 characters'),
+        phone: yup.number().required('Please enter your phone'),
         notes: yup.string().max(65535, 'Maximum length 65535 characters')
     });
 
@@ -58,8 +58,9 @@ export default function Reservation(props: Props) {
                 }
             })).data;
             setSubmitting(false);
+
             if (response.code === 0) return setError(response.message);
-            if (response.code === 1) return router.push('/reserve-success');
+            if (response.code === 1) return router.push(`/reserve-success?id=${response.message}`);
         }
         catch (err) {
             console.log(err)
