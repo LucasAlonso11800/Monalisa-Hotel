@@ -8,5 +8,5 @@ export enum HeadImages {
 
 export enum Images {
     MAP = "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/map.png?alt=media&token=faefcf2f-e7fc-417f-9ce0-01c842ecc42c",
-    ABOUT_US = "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/about-us.jpg?alt=media&token=1da23774-08aa-4d25-a603-38ac7e6a3ffb"
+    ABOUT_US = "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/about-us.jpg?alt=media&token=0b3d3f9d-9aae-4ebf-bec7-4c65aee086b6"
 };
