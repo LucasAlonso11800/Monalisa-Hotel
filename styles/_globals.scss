@@ -16,4 +16,7 @@ h2.section-title {
     @media all and (max-width: $tablet) {
         font-size: 3em;
     }
+    @media all and (max-width: $phone-lg) {
+        font-size: 2.5em;
+    }
 }

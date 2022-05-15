@@ -15,9 +15,6 @@ header.header {
     @media screen and (max-width: $phone-lg) {
         font-size: 10px;
     }
-    @media screen and (max-width: $phone){
-        font-size: 8px;
-    }
     
     nav.nav {
         display: flex;
@@ -25,7 +22,7 @@ header.header {
         justify-content: space-between;
         width: 100%;
         max-width: 1420px;
-        padding: 2em 1em;
+        padding: 2em 0.5em;
 
         a {
             font-size: 0.875em;
@@ -67,7 +64,7 @@ header.header {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding-top: 1em;
+        padding: 2em 1em;
 
         div.overlay {
             background-color: rgba(0, 0, 0, 0.3);
