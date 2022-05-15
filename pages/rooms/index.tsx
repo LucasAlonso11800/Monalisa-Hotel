@@ -37,20 +37,20 @@ export default function Rooms({ rooms, occupiedRooms, image, error }: Props) {
 
 export async function getStaticProps() {
     try {
-        const [rooms, occupiedRooms, image] = await Promise.all([
+        const [rooms, occupiedRooms] = await Promise.all([
             await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data,
             await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_OCCUPIED_ROOMS}`, { dateFrom: TODAY })).data,
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_PAGE_IMAGE}`, { page: PageNames.ROOMS })).data
+            // await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_PAGE_IMAGE}`, { page: PageNames.ROOMS })).data
         ]);
         return {
-            props: { rooms, occupiedRooms, image },
+            props: { rooms, occupiedRooms, image: {} },
             revalidate: 60
         }
     }
     catch (error){
         console.log(error)
         return {
-            props: { rooms: [], occupiedRooms: [], image: {}, error },
+            props: { rooms: [], occupiedRooms: [], image: {}, error: JSON.parse(JSON.stringify(error)) },
         }
     }
 };

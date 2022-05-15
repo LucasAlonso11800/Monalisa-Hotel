@@ -50,7 +50,7 @@ export async function getStaticProps() {
     }
     catch (error) {
         return {
-            props: { rooms: [], testimonials: [], image: {}, error },
+            props: { rooms: [], testimonials: [], image: {}, error: JSON.parse(JSON.stringify(error)) },
         }
     }
 };

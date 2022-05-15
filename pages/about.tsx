@@ -44,7 +44,7 @@ export async function getStaticProps() {
     catch (error) {
         console.log(error)
         return {
-            props: { testimonials: [], image: {}, error },
+            props: { testimonials: [], image: {}, error: JSON.parse(JSON.stringify(error)) },
         }
     }
 };
