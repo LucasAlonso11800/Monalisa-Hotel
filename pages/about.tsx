@@ -40,10 +40,7 @@ export async function getStaticProps() {
     }
     catch {
         return {
-            redirect: {
-                destination: '/404',
-                permanent: false
-            }
+            props: { testimonials: [], image: {} },
         }
     }
 };
