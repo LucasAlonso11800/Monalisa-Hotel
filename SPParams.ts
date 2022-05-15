@@ -1,7 +1,6 @@
-import { PageNames } from "./const/PageNames";
 import { STORED_PROCEDURES } from "./const/StoredProcedures";
 
-export type CallSPParams = GetPageImage | GetReserve | GetRooms | GetTestimonials | GetOccupiedRooms | GetRoomAmenities | GetRoomPrices | AddReserve | AddRoomReserve | CheckAvailabilty;
+export type CallSPParams = GetReserve | GetRooms | GetTestimonials | GetOccupiedRooms | GetRoomAmenities | GetRoomPrices | AddReserve | AddRoomReserve | CheckAvailabilty;
 
 type GetRooms = {
     procedure: STORED_PROCEDURES.GET_ROOM_CATEGORY,
@@ -54,9 +53,3 @@ type GetReserve = {
     // reserveId
     values: [number]
 };
-
-type GetPageImage = {
-    procedure: STORED_PROCEDURES.GET_PAGE_IMAGE,
-    // page name
-    values: [PageNames]
-}

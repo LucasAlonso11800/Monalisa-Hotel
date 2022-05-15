@@ -1,5 +1,8 @@
 import React from 'react';
+// Components
 import Image from 'next/image';
+// Const
+import { Images } from '../const/Images';
 
 export default function LittleAboutUs() {
     return (
@@ -9,7 +12,7 @@ export default function LittleAboutUs() {
                 <p className="left-side-text">Tel: (03) 0345 6789</p>
                 <div className="about">
                     <Image
-                        src="https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/about-us.jpg?alt=media&token=1da23774-08aa-4d25-a603-38ac7e6a3ffb"
+                        src={Images.ABOUT_US}
                         alt="Night"
                         width={1500}
                         height={1000}

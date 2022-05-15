@@ -5,16 +5,16 @@ import { CheckAvailabilty, Header, Layout, Room } from '../../components';
 // Const
 import { APIEndpoints } from '../../const/APIEndpoints';
 import { SERVER_URL, TODAY } from '../../const/const';
-import { PageNames } from '../../const/PageNames';
+import { HeadImages } from '../../const/Images';
 // Utils
 import { getOccupiedRoomsNumber } from '../../utils';
 // Types
 import type { RoomsPage as Props } from '../../props';
 
-export default function Rooms({ rooms, occupiedRooms, image }: Props) {
+export default function Rooms({ rooms, occupiedRooms }: Props) {
     return (
         <Layout id="rooms" title="Our Rooms">
-            <Header image={image.pageImageURL}>
+            <Header image={HeadImages.ROOMS}>
                 <h1 className="title">Our Rooms</h1>
                 <p className="subtitle">Home {'>'} Rooms</p>
                 <CheckAvailabilty />
@@ -36,13 +36,13 @@ export default function Rooms({ rooms, occupiedRooms, image }: Props) {
 
 export async function getStaticProps() {
     try {
-        const [rooms, occupiedRooms, image] = await Promise.all([
+        const [rooms, occupiedRooms] = await Promise.all([
             await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data,
             await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_OCCUPIED_ROOMS}`, { dateFrom: TODAY })).data,
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_PAGE_IMAGE}`, { page: PageNames.ROOMS })).data
         ]);
+       
         return {
-            props: { rooms, occupiedRooms, image},
+            props: { rooms, occupiedRooms },
             revalidate: 60
         }
     }

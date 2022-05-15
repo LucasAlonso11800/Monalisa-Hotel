@@ -8,16 +8,16 @@ import { SERVER_URL } from '../const/const';
 // Utils
 import { formatNumber } from '../utils';
 // Const
-import { PageNames } from '../const/PageNames';
+import { HeadImages } from '../const/Images';
 // Types
 import type { GetServerSidePropsContext } from 'next';
 import type { ReserveSuccessPage as Props } from '../props';
 
-export default function ReserveSuccess({ reserve, image }: Props) {
+export default function ReserveSuccess({ reserve }: Props) {
     const { reserveOwner, reserveFrom, reserveTo, reservePassengers, reservePrice, reserveRooms } = reserve;
     return (
         <Layout id="reserve-success" title="Thank for your reserve">
-            <Header image={image.pageImageURL}>
+            <Header image={HeadImages.RESERVE_SUCCESS}>
                 <h1 className="title">Thanks for your reserve</h1>
                 <p className="subtitle"></p>
             </Header>
@@ -49,13 +49,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
             }
         };
 
-        const [reserve, image] = await Promise.all([
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_RESERVE}`, { reserveId: context.query.id })).data,
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_PAGE_IMAGE}`, { page: PageNames.RESERVE_SUCCESS })).data
-        ])
+        const reserve = await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_RESERVE}`, { reserveId: context.query.id })).data
 
         return {
-            props: { reserve, image }
+            props: { reserve }
         }
     }
     catch {

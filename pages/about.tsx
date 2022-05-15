@@ -5,14 +5,14 @@ import { AboutUs, Header, Layout, Testimonials } from '../components';
 // Const
 import { SERVER_URL } from '../const/const';
 import { APIEndpoints } from '../const/APIEndpoints';
-import { PageNames } from '../const/PageNames';
+import { HeadImages } from '../const/Images';
 // Types
 import type { AboutPage as Props } from '../props';
 
-export default function About({ testimonials, image }: Props) {
+export default function About({ testimonials }: Props) {
     return (
         <Layout id="about" title="About us">
-            <Header image={image.pageImageURL}>
+            <Header image={HeadImages.ABOUT}>
                 <h1 className="title">
                     <span className="top-subtitle">About Us</span>
                     The best place to enjoy your life
@@ -31,12 +31,10 @@ export default function About({ testimonials, image }: Props) {
 
 export async function getStaticProps() {
     try {
-        const [testimonials, image] = await Promise.all([
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_TESTIMONIALS}`)).data,
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_PAGE_IMAGE}`, { page: PageNames.ABOUT })).data
-        ]);
+        const testimonials = await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_TESTIMONIALS}`)).data
+        
         return {
-            props: { testimonials, image },
+            props: { testimonials },
             revalidate: 60 * 60 * 24
         }
     }

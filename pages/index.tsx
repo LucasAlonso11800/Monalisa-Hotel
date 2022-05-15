@@ -5,14 +5,14 @@ import { CheckAvailabilty, ContactUs, DiscoverOurRooms, Header, Layout, LittleAb
 // Const
 import { SERVER_URL } from '../const/const';
 import { APIEndpoints } from '../const/APIEndpoints';
-import { PageNames } from '../const/PageNames';
+import { HeadImages } from '../const/Images';
 // Types
 import type { LandingPage as Props } from '../props';
 
-export default function Home({ rooms, testimonials, image }: Props) {
+export default function Home({ rooms, testimonials }: Props) {
     return (
         <Layout id="home" title="Welcome">
-            <Header image={image.pageImageURL}>
+            <Header image={HeadImages.HOME}>
                 <h1 className="title">
                     <span className="top-subtitle">Welcome to</span>
                     Monalisa Hotel
@@ -32,14 +32,13 @@ export default function Home({ rooms, testimonials, image }: Props) {
 
 export async function getStaticProps() {
     try {
-        const [rooms, testimonials, image] = await Promise.all([
+        const [rooms, testimonials] = await Promise.all([
             await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data,
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_TESTIMONIALS}`)).data,
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_PAGE_IMAGE}`, { page: PageNames.HOME })).data
+            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_TESTIMONIALS}`)).data
         ]);
 
         return {
-            props: { rooms, testimonials, image },
+            props: { rooms, testimonials },
             revalidate: 60 * 60 * 24
         }
     }
