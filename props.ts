@@ -6,13 +6,11 @@ export type LandingPage = {
     rooms: RoomType[]
     testimonials: TestimonialType[]
     image: PageImageType
-    error?: unknown
 };
 export type RoomsPage = {
     rooms: RoomType[]
     occupiedRooms: OccupiedRoomType[]
     image: PageImageType
-    error?: unknown
 };
 
 export type SingleRoomPage = {
@@ -21,13 +19,11 @@ export type SingleRoomPage = {
     amenities: AmenitiType[]
     relatedRooms: RoomType[]
     image: PageImageType
-    error?: unknown
 };
 
 export type AboutPage = {
     testimonials: TestimonialType[]
     image: PageImageType
-    error?: unknown
 };
 
 export type ReservationPage = {
@@ -38,13 +34,11 @@ export type ReservationPage = {
     dateTo: Date
     guests: number
     image: PageImageType
-    error?: unknown
 };
 
 export type ReserveSuccessPage = {
     reserve: ReserveType
     image: PageImageType
-    error?: unknown
 };
 
 // Components
