@@ -11,10 +11,11 @@ import { getOccupiedRoomsNumber } from '../../utils';
 // Types
 import type { RoomsPage as Props } from '../../props';
 
-export default function Rooms({ rooms, occupiedRooms, image }: Props) {
+export default function Rooms({ rooms, occupiedRooms, image, error }: Props) {
+    console.log(error)
     return (
         <Layout id="rooms" title="Our Rooms">
-            <Header image={image.pageImageURL}>
+            <Header image={image.pageImageURL || "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/head-images%2FRooms.jpg?alt=media&token=68c3ed31-5a94-43e3-a518-a2ae07455dc0"}>
                 <h1 className="title">Our Rooms</h1>
                 <p className="subtitle">Home {'>'} Rooms</p>
                 <CheckAvailabilty />
@@ -46,9 +47,10 @@ export async function getStaticProps() {
             revalidate: 60
         }
     }
-    catch {
+    catch (error){
+        console.log(error)
         return {
-            props: { rooms: [], occupiedRooms: [], image: {} },
+            props: { rooms: [], occupiedRooms: [], image: {}, error },
         }
     }
 };

@@ -9,10 +9,11 @@ import { PageNames } from '../const/PageNames';
 // Types
 import type { LandingPage as Props } from '../props';
 
-export default function Home({ rooms, testimonials, image }: Props) {
+export default function Home({ rooms, testimonials, image, error }: Props) {
+    console.log(error)
     return (
         <Layout id="home" title="Welcome">
-            <Header image={image.pageImageURL}>
+            <Header image={image.pageImageURL || "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/head-images%2FHome.jpg?alt=media&token=30f80dfb-ba8b-4d61-8a65-629f075f7994"}>
                 <h1 className="title">
                     <span className="top-subtitle">Welcome to</span>
                     Monalisa Hotel
@@ -22,8 +23,12 @@ export default function Home({ rooms, testimonials, image }: Props) {
             </Header>
             <main className="main">
                 <LittleAboutUs />
-                <DiscoverOurRooms rooms={rooms} />
-                <Testimonials testimonials={testimonials} />
+                {rooms.length > 0 &&
+                    <DiscoverOurRooms rooms={rooms} />
+                }
+                {testimonials.length > 0 &&
+                    <Testimonials testimonials={testimonials} />
+                }
                 <ContactUs />
             </main>
         </Layout>
@@ -35,7 +40,7 @@ export async function getStaticProps() {
         const [rooms, testimonials, image] = await Promise.all([
             await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data,
             await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_TESTIMONIALS}`)).data,
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_PAGE_IMAGE}`, {page: PageNames.HOME})).data
+            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_PAGE_IMAGE}`, { page: PageNames.HOME })).data
         ]);
 
         return {
@@ -43,12 +48,9 @@ export async function getStaticProps() {
             revalidate: 60 * 60 * 24
         }
     }
-    catch {
+    catch (error) {
         return {
-            redirect: {
-                destination: '/404',
-                permanent: false
-            }
+            props: { rooms: [], testimonials: [], image: {}, error },
         }
     }
 };

@@ -9,10 +9,11 @@ import { PageNames } from '../const/PageNames';
 // Types
 import type { AboutPage as Props } from '../props';
 
-export default function About({ testimonials, image }: Props) {
+export default function About({ testimonials, image, error }: Props) {
+    console.log(error)
     return (
         <Layout id="about" title="About us">
-            <Header image={image.pageImageURL}>
+            <Header image={image.pageImageURL || "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/head-images%2FAbout.jpg?alt=media&token=ee02a8c2-b599-4bb8-81fb-fd61f823c01f"}>
                 <h1 className="title">
                     <span className="top-subtitle">About Us</span>
                     The best place to enjoy your life
@@ -21,7 +22,9 @@ export default function About({ testimonials, image }: Props) {
             </Header>
             <main className="main">
                 <AboutUs />
-                <Testimonials testimonials={testimonials} />
+                {testimonials.length > 0 &&
+                    <Testimonials testimonials={testimonials} />
+                }
             </main>
         </Layout>
     )
@@ -38,9 +41,10 @@ export async function getStaticProps() {
             revalidate: 60 * 60 * 24
         }
     }
-    catch {
+    catch (error) {
+        console.log(error)
         return {
-            props: { testimonials: [], image: {} },
+            props: { testimonials: [], image: {}, error },
         }
     }
 };
