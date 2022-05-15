@@ -1,6 +1,6 @@
 import moment from "moment";
-// export const SERVER_URL = 'https://lucas-alonso-monalisa-hotel.herokuapp.com/api';
-export const SERVER_URL = 'http://localhost:3005/api';
+export const SERVER_URL = 'https://lucas-alonso-monalisa-hotel.herokuapp.com/api';
+// export const SERVER_URL = 'http://localhost:3005/api';
 
 const today = new Date();
 const nextWeek = new Date();
