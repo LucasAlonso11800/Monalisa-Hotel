@@ -2,9 +2,9 @@
   "name": "monalisa-hotel",
   "version": "0.1.0",
   "author": {
-      "name": "Lucas Alonso",
-      "email": "lucasalonso11800@gmail.com",
-      "url": "https://lucasalonso-personal-portfolio.netlify.app/"
+    "name": "Lucas Alonso",
+    "email": "lucasalonso11800@gmail.com",
+    "url": "https://lucasalonso-personal-portfolio.netlify.app/"
   },
   "engines": {
     "node": "16.15.0",
@@ -23,7 +23,6 @@
   "dependencies": {
     "@iconify/react": "^3.2.1",
     "axios": "^0.26.1",
-    "cypress": "^9.6.0",
     "formik": "^2.2.9",
     "moment": "^2.29.3",
     "next": "12.1.5",
@@ -40,6 +39,7 @@
     "@types/react": "18.0.5",
     "@types/react-datepicker": "^4.4.0",
     "@types/react-dom": "18.0.1",
+    "cypress": "^9.6.1",
     "eslint": "8.13.0",
     "eslint-config-next": "12.1.5",
     "jest": "^28.1.0",
