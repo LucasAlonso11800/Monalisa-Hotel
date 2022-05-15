@@ -1,9 +1,9 @@
 export enum HeadImages {
-    HOME = "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/head-images%2FHome.jpg?alt=media&token=30f80dfb-ba8b-4d61-8a65-629f075f7994",
-    ABOUT = "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/head-images%2FAbout.jpg?alt=media&token=ee02a8c2-b599-4bb8-81fb-fd61f823c01f",
-    RESERVATION = "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/head-images%2FReservation.jpg?alt=media&token=0c17ec30-f1c2-422a-8c86-8a54ca44b3d2",
-    RESERVE_SUCCESS = "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/head-images%2FReserve-success.jpg?alt=media&token=61d8ef17-fef3-4888-8006-83c9a37573e4",
-    ROOMS = "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/head-images%2FRooms.jpg?alt=media&token=68c3ed31-5a94-43e3-a518-a2ae07455dc0"
+    HOME = "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/head-images%2FHome.jpg?alt=media&token=15e1b83f-9a00-4dda-8301-5e65896a0664",
+    ABOUT = "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/head-images%2FAbout.jpg?alt=media&token=829bfe2d-92ad-4d9a-bcce-47f305a24ff6",
+    RESERVATION = "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/head-images%2FReservation.jpg?alt=media&token=30f899da-dfbf-4484-9f60-97d8e20cd152",
+    RESERVE_SUCCESS = "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/head-images%2FReserve-success.jpg?alt=media&token=45c99c35-d47a-4219-9a04-0115de677f69",
+    ROOMS = "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/head-images%2FRooms.jpg?alt=media&token=6da82b76-1137-4673-8418-c5df161478a6"
 };
 
 export enum Images {
