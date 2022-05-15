@@ -5,5 +5,6 @@ export enum APIEndpoints {
     GET_ROOM_CATEGORIES = "get-room-categories",
     GET_ROOM_PRICES = "get-room-prices",
     GET_TESTIMONIALS = "get-testimonials",
-    GET_RESERVE = "get-reserve"
+    GET_RESERVE = "get-reserve",
+    GET_PAGE_IMAGE = "get-page-image"
 };

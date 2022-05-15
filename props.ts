@@ -1,14 +1,16 @@
-import type { AmenitiType, OccupiedRoomType, PriceType, ReserveType, RoomType, SelectedRoomType, TestimonialType } from "./types";
+import type { AmenitiType, OccupiedRoomType, PageImageType, PriceType, ReserveType, RoomType, SelectedRoomType, TestimonialType } from "./types";
 
 // Pages
 
 export type LandingPage = {
     rooms: RoomType[]
     testimonials: TestimonialType[]
+    image: PageImageType
 };
 export type RoomsPage = {
     rooms: RoomType[]
     occupiedRooms: OccupiedRoomType[]
+    image: PageImageType
 };
 
 export type SingleRoomPage = {
@@ -16,10 +18,12 @@ export type SingleRoomPage = {
     occupiedRooms: OccupiedRoomType[]
     amenities: AmenitiType[]
     relatedRooms: RoomType[]
+    image: PageImageType
 };
 
 export type AboutPage = {
     testimonials: TestimonialType[]
+    image: PageImageType
 };
 
 export type ReservationPage = {
@@ -29,10 +33,12 @@ export type ReservationPage = {
     dateFrom: Date
     dateTo: Date
     guests: number
+    image: PageImageType
 };
 
 export type ReserveSuccessPage = {
     reserve: ReserveType
+    image: PageImageType
 };
 
 // Components

@@ -17,7 +17,8 @@
     "start": "next start",
     "lint": "next lint",
     "e2e": "npx cypress open",
-    "test": "jest"
+    "test": "jest",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@iconify/react": "^3.2.1",

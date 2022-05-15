@@ -2,7 +2,7 @@ import React from 'react'
 // Components
 import Image from 'next/image'
 // Utils
-import { formatNumber, getImageURL } from '../utils';
+import { formatNumber } from '../utils';
 // Types
 import type { SingleRoomIntro as Props } from '../props';
 
@@ -12,7 +12,7 @@ export default function SingleRoomIntro({ room }: Props) {
     return (
         <section className="single-room-intro">
             <div className="container">
-                <Image src={getImageURL(roomImage, "rooms")} alt={roomName} width={1420} height={700} objectFit="cover" />
+                <Image src={roomImage} alt={roomName} width={1420} height={700} objectFit="cover" />
                 <p className="price">
                     Start from&nbsp;<span>${roomMinimumPrice.toFixed(2)}</span>&nbsp;/&nbsp;<span>Night</span>
                 </p>

@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import { getImageURL } from '../utils';
 
 export default function LittleAboutUs() {
     return (
@@ -9,7 +8,13 @@ export default function LittleAboutUs() {
             <div className="row">
                 <p className="left-side-text">Tel: (03) 0345 6789</p>
                 <div className="about">
-                    <Image src={getImageURL('about-us.jpg')} alt="Night" width={1500} height={1000} objectFit='cover' />
+                    <Image
+                        src="https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/about-us.jpg?alt=media&token=1da23774-08aa-4d25-a603-38ac7e6a3ffb"
+                        alt="Night"
+                        width={1500}
+                        height={1000}
+                        objectFit='cover'
+                    />
                     <div className="column">
                         <div></div>
                         <h2 className="section-title">A best place to enjoy your life</h2>

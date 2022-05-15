@@ -64,6 +64,12 @@ export type ReserveType = {
     reserveRooms: number
 };
 
+export type PageImageType = {
+    pageImageId: number
+    pageImagePage: string
+    pageImageURL: string
+};
+
 type OkPacket = {
     fieldCount: number
     affectedRows: number

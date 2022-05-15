@@ -8,18 +8,19 @@ import { Icon } from '@iconify/react';
 // Const
 import { APIEndpoints } from '../const/APIEndpoints';
 import { NEXT_WEEK, SERVER_URL, TODAY } from '../const/const';
+import { PageNames } from '../const/PageNames';
 // Form
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 // Utils
-import { getImageURL, getOccupiedRoomsNumber } from '../utils';
+import { getOccupiedRoomsNumber } from '../utils';
 // Types
 import type { ReservationPage as Props } from '../props';
 import type { AddReserveResponseType, RoomType, SelectedRoomType } from '../types';
 import type { GetServerSidePropsContext } from 'next';
 
 export default function Reservation(props: Props) {
-    const { roomPrices, dateFrom, dateTo } = props;
+    const { roomPrices, dateFrom, dateTo, image } = props;
 
     const router = useRouter();
 
@@ -111,7 +112,7 @@ export default function Reservation(props: Props) {
 
     return (
         <Layout id="reservation" title="Reserve">
-            <Header image={getImageURL('Reservation.jpg', 'head-images')}>
+            <Header image={image.pageImageURL}>
                 <h1 className="title">Reserve</h1>
                 <p className="subtitle"></p>
             </Header>
@@ -171,13 +172,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         const dateTo = context.query.to || NEXT_WEEK;
         const guests = context.query.guests || 2;
 
-        const [rooms, occupiedRooms, roomPrices] = await Promise.all([
+        const [rooms, occupiedRooms, roomPrices, image] = await Promise.all([
             await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data,
             await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_OCCUPIED_ROOMS}`, { dateFrom })).data,
             await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_PRICES}`)).data,
+            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_PAGE_IMAGE}`, { page: PageNames.RESERVATION })).data
         ]);
         return {
-            props: { rooms, occupiedRooms, roomPrices, dateFrom, dateTo, guests }
+            props: { rooms, occupiedRooms, roomPrices, dateFrom, dateTo, guests, image }
         }
     }
     catch {

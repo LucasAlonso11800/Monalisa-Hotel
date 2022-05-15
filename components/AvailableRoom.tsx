@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { Icon } from '@iconify/react';
 // Utils
-import { formatNumber, getImageURL } from '../utils'
+import { formatNumber } from '../utils'
 // Types
 import type { AvailableRoom as Props } from '../props'
 import type { PriceType } from '../types';
@@ -34,7 +34,7 @@ export default function AvailableRoom({ room, availableRooms, roomPrices, formik
     return (
         <div className={`available-room ${notAvailable ? 'hidden' : ''}`}>
             <div className="image">
-                <Image src={getImageURL(roomImage, 'rooms')} alt={roomName} layout="fill" objectFit='cover' />
+                <Image src={roomImage} alt={roomName} layout="fill" objectFit='cover' />
             </div>
             <div className="body">
                 <h4>{roomName}</h4>

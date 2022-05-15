@@ -29,6 +29,4 @@ export const getOccupiedRoomsNumber = (occupiedRooms: OccupiedRoomType[], room: 
     return occupiedRooms.find(occ_room => occ_room.roomId === room.roomId)?.roomOccupiedRooms || 0
 };
 
-export const getImageURL = (image: string, folder?: string): string => `/images/${folder ? `${folder}/${image}` : `${image}`}`;
-
 export const redirect = (url: string, router: NextRouter) => () => router.push(url)

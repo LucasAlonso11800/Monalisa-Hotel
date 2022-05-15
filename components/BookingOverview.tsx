@@ -3,7 +3,7 @@ import moment from 'moment';
 // Components
 import Image from 'next/image';
 // Utils
-import { formatNumber, getImageURL } from '../utils';
+import { formatNumber } from '../utils';
 // Types
 import type { BookingOverview as Props } from '../props';
 
@@ -17,7 +17,7 @@ export default function BookingOverview({ selectedRooms, total, dateFrom, dateTo
                 {selectedRooms.map(({ room, values }) => (
                     <div className="booked-room" key={room.roomId}>
                         <div className="image">
-                            <Image src={getImageURL(room.roomImage, 'rooms')} alt={room.roomName} layout="fill" objectFit='cover' />
+                            <Image src={room.roomImage} alt={room.roomName} layout="fill" objectFit='cover' />
                         </div>
                         <div className="body">
                             <h4>{room.roomName}</h4>

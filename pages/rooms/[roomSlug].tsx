@@ -3,7 +3,7 @@ import axios from 'axios';
 // Components
 import { Layout, Header, CheckAvailabilty, SingleRoomIntro, SingleRoomInfo, RelatedRooms } from '../../components';
 // Utils
-import { getImageURL, getRelatedRoomsIndex } from '../../utils';
+import { getRelatedRoomsIndex } from '../../utils';
 // Const
 import { APIEndpoints } from '../../const/APIEndpoints';
 import { SERVER_URL, TODAY } from '../../const/const';
@@ -17,7 +17,7 @@ export default function SingleRoomPage({ room, amenities, relatedRooms, occupied
 
     return (
         <Layout id="single-room-page" title={roomName}>
-            <Header image={getImageURL(roomImage, 'rooms')}>
+            <Header image={roomImage}>
                 <h1 className="title">{roomName}</h1>
                 <p className="subtitle">Home {'>'} Rooms {'>'} {roomName}</p>
                 <CheckAvailabilty />

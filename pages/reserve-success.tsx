@@ -6,16 +6,18 @@ import { Header, Layout } from '../components';
 import { APIEndpoints } from '../const/APIEndpoints';
 import { SERVER_URL } from '../const/const';
 // Utils
-import { formatNumber, getImageURL } from '../utils';
+import { formatNumber } from '../utils';
+// Const
+import { PageNames } from '../const/PageNames';
 // Types
 import type { GetServerSidePropsContext } from 'next';
 import type { ReserveSuccessPage as Props } from '../props';
 
-export default function ReserveSuccess({ reserve }: Props) {
+export default function ReserveSuccess({ reserve, image }: Props) {
     const { reserveOwner, reserveFrom, reserveTo, reservePassengers, reservePrice, reserveRooms } = reserve;
     return (
         <Layout id="reserve-success" title="Thank for your reserve">
-            <Header image={getImageURL('Reserve-success.jpg', 'head-images')}>
+            <Header image={image.pageImageURL}>
                 <h1 className="title">Thanks for your reserve</h1>
                 <p className="subtitle"></p>
             </Header>
@@ -28,7 +30,7 @@ export default function ReserveSuccess({ reserve }: Props) {
                         <p>Passengers: <b>{formatNumber(reservePassengers)}</b></p>
                         <p>Rooms: <b>{reserveRooms}</b></p>
                         <p>Total: <b>${reservePrice.toFixed(2)}</b></p>
-                        <p>This demo page was developed by Lucas Alonso. <br/>Thank you for visiting it</p>
+                        <p>This demo page was developed by Lucas Alonso. <br />Thank you for visiting it</p>
                     </div>
                 </section>
             </main>
@@ -47,12 +49,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
             }
         };
 
-        const reserve = await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_RESERVE}`, { reserveId: context.query.id })).data;
+        const [reserve, image] = await Promise.all([
+            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_RESERVE}`, { reserveId: context.query.id })).data,
+            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_PAGE_IMAGE}`, { page: PageNames.RESERVE_SUCCESS })).data
+        ])
 
         return {
-            props: {
-                reserve
-            }
+            props: { reserve, image }
         }
     }
     catch {
