@@ -12,8 +12,6 @@ import { NEXT_WEEK, SERVER_URL, TODAY } from '../const/const';
 // Form
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-// Utils
-import { getOccupiedRoomsNumber } from '../utils';
 // Types
 import type { ReservationPage as Props } from '../props';
 import type { AddReserveResponseType, RoomType, SelectedRoomType } from '../types';
@@ -25,7 +23,6 @@ export default function Reservation(props: Props) {
     const router = useRouter();
 
     const [rooms, setRooms] = useState(props.rooms);
-    const [occupiedRooms, setOccupiedRooms] = useState(props.occupiedRooms);
     const [checkIn, setCheckIn] = useState<string | Date>(dateFrom);
     const [checkOut, setCheckOut] = useState<string | Date>(dateTo);
     const [guests, setGuests] = useState<number>(props.guests || 2);
@@ -100,13 +97,9 @@ export default function Reservation(props: Props) {
 
     const fetchData = async (date: string) => {
         setLoading(true);
-        const [rooms, occupiedRooms] = await Promise.all([
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data,
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_OCCUPIED_ROOMS}`, { dateFrom: date })).data,
-        ]);
+        const rooms = await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null, dateFrom: date })).data;
         formik.resetForm();
         setRooms(rooms);
-        setOccupiedRooms(occupiedRooms);
         setLoading(false);
     };
 
@@ -137,7 +130,6 @@ export default function Reservation(props: Props) {
                                     <AvailableRoom
                                         key={room.roomId}
                                         room={room}
-                                        availableRooms={room.roomTotalRooms - getOccupiedRoomsNumber(occupiedRooms, room)}
                                         roomPrices={roomPrices.filter(price => price.roomId === room.roomId)}
                                         formik={formik}
                                     />
@@ -167,25 +159,27 @@ export default function Reservation(props: Props) {
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const dateFrom = context.query.from || TODAY;
+    const dateTo = context.query.to || NEXT_WEEK;
+    const guests = context.query.guests || 2;
     try {
-        const dateFrom = context.query.from || TODAY;
-        const dateTo = context.query.to || NEXT_WEEK;
-        const guests = context.query.guests || 2;
 
-        const [rooms, occupiedRooms, roomPrices] = await Promise.all([
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data,
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_OCCUPIED_ROOMS}`, { dateFrom })).data,
+        const [rooms, roomPrices] = await Promise.all([
+            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null, dateFrom })).data,
             await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_PRICES}`)).data
         ]);
         return {
-            props: { rooms, occupiedRooms, roomPrices, dateFrom, dateTo, guests }
+            props: { rooms, roomPrices, dateFrom, dateTo, guests }
         }
     }
     catch {
         return {
-            redirect: {
-                destination: '/error',
-                permanent: false
+            props: { 
+                rooms: [],
+                roomPrices: [],
+                dateFrom,
+                dateTo,
+                guests
             }
         }
     }

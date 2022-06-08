@@ -9,13 +9,8 @@ export type RoomType = {
     roomBeds: number
     roomPassengers: number
     roomDeposit: number
-};
-
-export type OccupiedRoomType = {
-    roomId: number
-    roomName: string
     roomOccupiedRooms: number
-}
+};
 
 export type TestimonialType = {
     testimonialId: number

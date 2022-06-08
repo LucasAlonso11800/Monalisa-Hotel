@@ -7,9 +7,9 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import type { RoomType } from '../../types';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { roomCategoryId } = req.body;
+    const { roomCategoryId, dateFrom } = req.body;
     try {
-        const rooms: RoomType[] = await callSP({ procedure: STORED_PROCEDURES.GET_ROOM_CATEGORY, values: [roomCategoryId] });
+        const rooms: RoomType[] = await callSP({ procedure: STORED_PROCEDURES.GET_ROOM_CATEGORY, values: [roomCategoryId, dateFrom] });
         res.json(rooms);
     }
     catch (error) {

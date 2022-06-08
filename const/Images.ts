@@ -8,5 +8,6 @@ export enum HeadImages {
 
 export enum Images {
     MAP = "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/map.png?alt=media&token=faefcf2f-e7fc-417f-9ce0-01c842ecc42c",
-    ABOUT_US = "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/about-us.jpg?alt=media&token=0b3d3f9d-9aae-4ebf-bec7-4c65aee086b6"
+    ABOUT_US = "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/about-us.jpg?alt=media&token=0b3d3f9d-9aae-4ebf-bec7-4c65aee086b6",
+    DISCOVER_OUR_ROOMS = "https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/rooms%2Fsuperior.webp?alt=media&token=900137a9-a773-4a7a-ac2b-4077aeaafc56"
 };

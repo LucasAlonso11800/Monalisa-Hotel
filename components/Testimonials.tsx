@@ -8,11 +8,14 @@ export default function Testimonials({ testimonials }: Props) {
     const [index, setIndex] = useState<number>(0);
 
     useEffect(() => {
-        setTimeout(() => {
-            if (index === testimonials.length - 1) return setIndex(0);
-            setIndex(index + 1);
+        const interval = setInterval(() => {
+            setIndex(index => index === testimonials.length - 1 ? 0 : index  + 1);
         }, 10000);
-    }, [index, testimonials]);
+
+        return () => {
+            clearInterval(interval);
+        }
+    }, [testimonials]);
 
     return (
         <section className="testimonials">

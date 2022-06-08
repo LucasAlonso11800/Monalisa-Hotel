@@ -3,11 +3,11 @@ import { useRouter } from 'next/router';
 // Components
 import Image from 'next/image';
 // Utils
-import { formatNumber, getOccupiedRoomsNumber, redirect } from '../utils';
+import { formatNumber, redirect } from '../utils';
 // Types
 import type { RelatedRooms as Props } from '../props';
 
-export default function RelatedRooms({ rooms, occupiedRooms }: Props) {
+export default function RelatedRooms({ rooms }: Props) {
     const router = useRouter();
 
     return (
@@ -16,8 +16,8 @@ export default function RelatedRooms({ rooms, occupiedRooms }: Props) {
                 <h2 className="section-title">Related Rooms</h2>
                 <div className="related-rooms">
                     {rooms.map(room => {
-                        const { roomId, roomName, roomImage, roomDeposit, roomBeds, roomPassengers, roomMinimumPrice, roomTotalRooms } = room;
-                        const availableRooms: number = roomTotalRooms - getOccupiedRoomsNumber(occupiedRooms, room);
+                        const { roomId, roomName, roomImage, roomDeposit, roomBeds, roomPassengers, roomMinimumPrice, roomTotalRooms, roomOccupiedRooms } = room;
+                        const availableRooms: number = roomTotalRooms - roomOccupiedRooms;
                         const isAvailable: boolean = availableRooms > 5;
                         const notAvailable: boolean = availableRooms === 0;
                         

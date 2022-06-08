@@ -57,10 +57,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     }
     catch {
         return {
-            redirect: {
-                destination: '/error',
-                permanent: false
-            }
+            props: { reserve: {} }
         }
     }
 };

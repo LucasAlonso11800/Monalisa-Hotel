@@ -8,10 +8,10 @@ import { formatNumber } from '../utils';
 // Types
 import type { Room as Props } from '../props'
 
-export default function Room({ room, index, direction, occupiedRooms }: Props) {
-    const { roomImage, roomMinimumPrice, roomDescription, roomName, roomSlug, roomTotalRooms, roomDeposit, roomPassengers, roomBeds } = room;
+export default function Room({ room, index, direction }: Props) {
+    const { roomImage, roomMinimumPrice, roomDescription, roomName, roomSlug, roomTotalRooms, roomDeposit, roomPassengers, roomBeds, roomOccupiedRooms } = room;
     
-    const availableRooms: number = roomTotalRooms - occupiedRooms
+    const availableRooms: number = roomTotalRooms - roomOccupiedRooms
     const isAvailable: boolean = availableRooms > 5;
     const notAvailable: boolean = availableRooms === 0;
 

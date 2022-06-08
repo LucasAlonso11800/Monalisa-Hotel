@@ -40,10 +40,8 @@ export async function getStaticProps() {
     }
     catch {
         return {
-            redirect: {
-                destination: '/error',
-                permanent: false
-            }
+            props: { testimonials: [] },
+            revalidate: 1
         }
     }
 };

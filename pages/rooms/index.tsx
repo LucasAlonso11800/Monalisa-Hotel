@@ -6,12 +6,10 @@ import { CheckAvailabilty, Header, Layout, Room } from '../../components';
 import { APIEndpoints } from '../../const/APIEndpoints';
 import { SERVER_URL, TODAY } from '../../const/const';
 import { HeadImages } from '../../const/Images';
-// Utils
-import { getOccupiedRoomsNumber } from '../../utils';
 // Types
 import type { RoomsPage as Props } from '../../props';
 
-export default function Rooms({ rooms, occupiedRooms }: Props) {
+export default function Rooms({ rooms }: Props) {
     return (
         <Layout id="rooms" title="Our Rooms">
             <Header image={HeadImages.ROOMS}>
@@ -26,7 +24,6 @@ export default function Rooms({ rooms, occupiedRooms }: Props) {
                         room={room}
                         index={index}
                         direction={index % 2 === 0 ? 'reverse' : undefined}
-                        occupiedRooms={getOccupiedRoomsNumber(occupiedRooms, room)}
                     />
                 ))}
             </main>
@@ -36,22 +33,17 @@ export default function Rooms({ rooms, occupiedRooms }: Props) {
 
 export async function getStaticProps() {
     try {
-        const [rooms, occupiedRooms] = await Promise.all([
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data,
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_OCCUPIED_ROOMS}`, { dateFrom: TODAY })).data,
-        ]);
-       
+        const rooms = await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null, dateFrom: TODAY })).data;
+
         return {
-            props: { rooms, occupiedRooms },
+            props: { rooms },
             revalidate: 60
         }
     }
     catch {
         return {
-            redirect: {
-                destination: '/error',
-                permanent: false
-            }
+            props: { rooms: [] },
+            revalidate: 1
         }
     }
 };

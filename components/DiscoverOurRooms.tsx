@@ -2,6 +2,8 @@ import React from 'react';
 import {useRouter} from 'next/router'
 // Components
 import Image from 'next/image';
+// Const
+import { Images } from '../const/Images';
 // Utils
 import { redirect } from '../utils';
 // Types
@@ -28,7 +30,7 @@ export default function DiscoverOurRooms({ rooms }: Props) {
                     )})
                 } 
             </div>
-            <Image src="https://firebasestorage.googleapis.com/v0/b/monalisa-5d346.appspot.com/o/rooms%2Fsuperior.webp?alt=media&token=900137a9-a773-4a7a-ac2b-4077aeaafc56" alt="classic" width={1200} height={800} objectFit='cover' />
+            <Image src={Images.DISCOVER_OUR_ROOMS} alt="classic" width={1200} height={800} objectFit='cover' />
         </section>
     )
 };

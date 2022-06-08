@@ -1,5 +1,4 @@
 import { NextRouter } from "next/router";
-import { OccupiedRoomType, RoomType } from "./types";
 
 export const formatNumber = (number: number): string => number.toString().padStart(2, '0');
 
@@ -23,10 +22,6 @@ export const getRelatedRoomsIndex = (roomIndex: number, roomsLength: number): nu
         response[2] = getRandomNumber(roomIndex, roomsLength, response);
     };
     return response;
-};
-
-export const getOccupiedRoomsNumber = (occupiedRooms: OccupiedRoomType[], room: RoomType): number => {
-    return occupiedRooms.find(occ_room => occ_room.roomId === room.roomId)?.roomOccupiedRooms || 0
 };
 
 export const redirect = (url: string, router: NextRouter) => () => router.push(url)

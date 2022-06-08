@@ -3,7 +3,7 @@ import axios from 'axios';
 // Components
 import { CheckAvailabilty, ContactUs, DiscoverOurRooms, Header, Layout, LittleAboutUs, Testimonials } from '../components';
 // Const
-import { SERVER_URL } from '../const/const';
+import { SERVER_URL, TODAY } from '../const/const';
 import { APIEndpoints } from '../const/APIEndpoints';
 import { HeadImages } from '../const/Images';
 // Types
@@ -33,7 +33,7 @@ export default function Home({ rooms, testimonials }: Props) {
 export async function getStaticProps() {
     try {
         const [rooms, testimonials] = await Promise.all([
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data,
+            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null, dateFrom: TODAY })).data,
             await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_TESTIMONIALS}`)).data
         ]);
 
@@ -44,10 +44,11 @@ export async function getStaticProps() {
     }
     catch {
         return {
-            redirect: {
-                destination: '/error',
-                permanent: false
-            }
+            props: { 
+                rooms: [], 
+                testimonials: [] 
+            },
+            revalidate: 1
         }
     }
 };

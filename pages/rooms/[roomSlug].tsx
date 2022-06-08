@@ -9,10 +9,10 @@ import { APIEndpoints } from '../../const/APIEndpoints';
 import { SERVER_URL, TODAY } from '../../const/const';
 // Types
 import type { GetStaticPropsContext } from 'next';
-import type { AmenitiType, OccupiedRoomType, RoomType } from '../../types';
+import type { AmenitiType, RoomType } from '../../types';
 import type { SingleRoomPage as Props } from '../../props';
 
-export default function SingleRoomPage({ room, amenities, relatedRooms, occupiedRooms }: Props) {
+export default function SingleRoomPage({ room, amenities, relatedRooms }: Props) {
     const { roomName, roomImage, roomDescription } = room;
 
     return (
@@ -25,14 +25,14 @@ export default function SingleRoomPage({ room, amenities, relatedRooms, occupied
             <main className="main">
                 <SingleRoomIntro room={room} />
                 <SingleRoomInfo description={roomDescription} amenities={amenities} />
-                <RelatedRooms rooms={relatedRooms} occupiedRooms={occupiedRooms} />
+                <RelatedRooms rooms={relatedRooms} />
             </main>
         </Layout>
     )
 };
 
 export async function getStaticPaths() {
-    const rooms: RoomType[] = await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data;
+    const rooms: RoomType[] = await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null, dateFrom: TODAY })).data;
     return {
         paths: rooms.map(room => ({ params: { roomSlug: room.roomSlug } })),
         fallback: false
@@ -41,10 +41,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
     try {
-        const [rooms, occupiedRooms]: [RoomType[], OccupiedRoomType[]] = await Promise.all([
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null })).data,
-            await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_OCCUPIED_ROOMS}`, { dateFrom: TODAY })).data,
-        ]);
+        const rooms: RoomType[] = await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null, dateFrom: TODAY })).data;
 
         const room = rooms.find(r => r.roomSlug === params?.roomSlug);
         const roomIndex = rooms.findIndex(r => r.roomSlug === room?.roomSlug);
@@ -57,17 +54,18 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
                 room,
                 amenities,
                 relatedRooms: [rooms[randomNumbers[0]], rooms[randomNumbers[1]], rooms[randomNumbers[2]]],
-                occupiedRooms
             },
             revalidate: 60 * 60 * 24
         }
     }
     catch {
         return {
-            redirect: {
-                destination: '/404',
-                permanent: false
-            }
+            props: {
+                room: {},
+                amenities: [],
+                relatedRooms: []
+            },
+            revalidate: 1
         }
     }
 }

@@ -1,4 +1,4 @@
-import type { AmenitiType, OccupiedRoomType, PriceType, ReserveType, RoomType, SelectedRoomType, TestimonialType } from "./types";
+import type { AmenitiType, PriceType, ReserveType, RoomType, SelectedRoomType, TestimonialType } from "./types";
 
 // Pages
 
@@ -8,12 +8,10 @@ export type LandingPage = {
 };
 export type RoomsPage = {
     rooms: RoomType[]
-    occupiedRooms: OccupiedRoomType[]
 };
 
 export type SingleRoomPage = {
     room: RoomType
-    occupiedRooms: OccupiedRoomType[]
     amenities: AmenitiType[]
     relatedRooms: RoomType[]
 };
@@ -24,7 +22,6 @@ export type AboutPage = {
 
 export type ReservationPage = {
     rooms: RoomType[]
-    occupiedRooms: OccupiedRoomType[]
     roomPrices: PriceType[]
     dateFrom: Date
     dateTo: Date
@@ -61,7 +58,6 @@ export type Testimonials = {
 export type Room = {
     room: RoomType
     index: number
-    occupiedRooms: number
     direction?: 'reverse'
 };
 
@@ -76,12 +72,10 @@ export type SingleRoomInfo = {
 
 export type RelatedRooms = {
     rooms: RoomType[]
-    occupiedRooms: OccupiedRoomType[]
 };
 
 export type AvailableRoom = {
     room: RoomType
-    availableRooms: number
     roomPrices: PriceType[]
     formik: any
 };
