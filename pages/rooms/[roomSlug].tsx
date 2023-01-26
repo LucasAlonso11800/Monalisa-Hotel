@@ -32,7 +32,7 @@ export default function SingleRoomPage({ room, amenities, relatedRooms }: Props)
 };
 
 export async function getStaticPaths() {
-    const rooms: RoomType[] = await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null, dateFrom: TODAY })).data;
+    const rooms: RoomType[] = await (await axios.post(`${SERVER_URL}/${APIEndpoints.GET_ROOM_CATEGORIES}`, { roomCategoryId: null, dateFrom: TODAY })).data || [];
     return {
         paths: rooms.map(room => ({ params: { roomSlug: room.roomSlug } })),
         fallback: false
