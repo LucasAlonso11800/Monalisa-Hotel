@@ -1,5 +1,5 @@
 import moment from "moment";
-export const SERVER_URL = 'https://monalisa-hotel-r9v0ihwgs-lucasalonsoe4c6.vercel.app/api';
+export const SERVER_URL = 'https://monalisa-hotel.vercel.app/api';
 // export const SERVER_URL = 'http://localhost:3005/api';
 
 const today = new Date();
